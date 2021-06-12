@@ -1,0 +1,11 @@
+.header {
+    /*border: red solid 1px;*/
+
+    max-width: 320px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 28px auto 0;
+    border-bottom: #545454 solid 1px;
+}
