@@ -1,0 +1,7 @@
+.profile__name-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    margin: 23px auto 0;
+}

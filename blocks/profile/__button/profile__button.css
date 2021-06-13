@@ -1,0 +1,11 @@
+.profile__button {
+    border: #fff solid 1px;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-image: url(../../../images/pen.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: 50%;
+}

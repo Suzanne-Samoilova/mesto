@@ -1,8 +1,6 @@
 .profile {
-    border: red solid 1px;
     width: 282px;
     display: flex;
     flex-direction: column;
     margin: 42px auto 0;
-
 }
