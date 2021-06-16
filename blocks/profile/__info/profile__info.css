@@ -3,3 +3,12 @@
     flex-direction: column;
     /*justify-content: flex-start;*/
 }
+
+@media screen and (min-width: 880px) {
+    .profile__info {
+        margin: 0 auto 0 30px;
+        align-items: flex-start;
+        justify-content: center;
+        /*margin: 0;*/
+    }
+}

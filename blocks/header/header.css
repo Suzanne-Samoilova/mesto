@@ -1,9 +1,16 @@
 .header {
     width: 100%;
+    max-width: 880px;
     height: 56px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 28px auto 0;
     border-bottom: #545454 solid 1px;
+}
+
+@media screen and (min-width: 1280px) {
+    .header {
+        margin: 45px auto 0;
+    }
 }
