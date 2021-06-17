@@ -1,15 +1,13 @@
 .popup__text {
-    opacity: 0.2;
     border: none;
-    border-bottom: #000 solid 1px;
+    border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
     min-height: 30px;
-
     color: #000;
+    font-family: inherit;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
