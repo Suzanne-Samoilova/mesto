@@ -1,7 +1,7 @@
 // Проверка подключения
 console.log('Симпл Димпл! Нет, Поп ит!');
 
-// Выборка
+
 // Кнопка "Редактировать профиль"
 const popupOpenButtonElement = document.querySelector('.profile__button-edit');
 // Весь попап
@@ -9,14 +9,16 @@ const popupElement = document.querySelector('.popup');
 // Кнопка "Закрыть попап"
 const popupCloseButtonElement = popupElement.querySelector('.popup__button-close');
 
+
 // Переключение всплывающего окна
 const openPopup = function () {
-    popupElement.classList.add('popup_is-opened')
+    popupElement.classList.add('popup_opened')
 }
 
 const closePopup = function () {
-    popupElement.classList.remove('popup_is-opened')
+    popupElement.classList.remove('popup_opened')
 }
+
 
 //Закрыть на затемненную область
 const closePopupByClickOnOverlay = function (event) {
@@ -27,7 +29,8 @@ const closePopupByClickOnOverlay = function (event) {
     closePopup()
 }
 
-// Открыть/закрыть по клику
+
+// Открыть попап по кнопке редактирования/ закрыть по кнопке крестика или затемненной области
 popupOpenButtonElement.addEventListener('click', openPopup);
 popupCloseButtonElement.addEventListener('click', closePopup);
 popupElement.addEventListener('click', closePopupByClickOnOverlay);
@@ -37,24 +40,31 @@ popupElement.addEventListener('click', closePopupByClickOnOverlay);
 const profileElement = document.querySelector('.profile');
 const profileNameElement = profileElement.querySelector('.profile__name');
 const profileInfoElement = profileElement.querySelector('.profile__text');
-// console.log(profileNameElement, profileInfoElement);
+
 
 // Найти поле ввода имени и поле ввода информации
 const inputProfileName = popupElement.querySelector('.popup__name');
 const inputProfileInfo = popupElement.querySelector('.popup__info');
-// console.log(inputProfileName, inputProfileInfo);
 
-// Найти кнопку "Сохранить"
-const popupSaveButton = popupElement.querySelector('.popup__button-save');
 
-// Сохранить после нажатия кнопки "Сохранить"
-const saveNameByClickOnSaveButton = function () {
-    profileNameElement.textContent = inputProfileName.value;
-    profileInfoElement.textContent = inputProfileInfo.value;
-}
+//Значение полей ввода взято со страницы
+inputProfileName.value = profileNameElement.textContent;
+inputProfileInfo.value = profileInfoElement.textContent;
 
-// Закрыть и сохранить после нажатия кнопки "Сохранить"
-popupSaveButton.addEventListener('click', closePopup);
-popupSaveButton.addEventListener('click', saveNameByClickOnSaveButton);
 
+// Находим форму отправки (полей ввода имени и информации) в DOM
+const formElement = document.querySelector('.popup__input');
+
+
+// Обработчик «отправки» формы (пока никуда отправляться не будет)
+    function formSubmitHandler (evt) {
+        evt.preventDefault();
+        profileNameElement.textContent = inputProfileName.value;
+        profileInfoElement.textContent = inputProfileInfo.value;
+    }
+
+
+// Обработчик формы, следит за событием “submit” - кнопка "Сохранить"
+formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', closePopup);
 
