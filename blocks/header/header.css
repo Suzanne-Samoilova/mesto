@@ -1,6 +1,6 @@
 .header {
     width: 100%;
-    max-width: 880px;
+    max-width: 320px;
     height: 56px;
     display: flex;
     flex-direction: row;
@@ -9,8 +9,21 @@
     border-bottom: #545454 solid 1px;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 581px) {
+    .header {
+        max-width: 581px;
+    }
+}
+
+@media screen and (min-width: 880px) {
     .header {
         margin: 45px auto 0;
+        max-width: 840px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .header {
+        max-width: 880px;
     }
 }
