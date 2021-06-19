@@ -1,11 +1,10 @@
 .header {
     width: 100%;
     max-width: 320px;
-    height: 56px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: #545454 solid 1px;
+    border-bottom: rgba(84, 84, 84, 0.7) solid 1px;
     margin: 28px auto 0;
 }
 

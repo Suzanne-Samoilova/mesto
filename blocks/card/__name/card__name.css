@@ -1,6 +1,5 @@
 .card__name {
     background-color: #fff;
-    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
