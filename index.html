@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./pages/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <title>Место</title>
 </head>
 <body>
 <div class="page">
@@ -15,7 +15,7 @@
 
         <main>
             <section class="profile">
-                <img class="profile__image" src="./images/profile_image.svg" alt="Изображение профиля">
+                <img class="profile__image" src="./images/profile_image.png" alt="Изображение профиля">
                 <div class="profile__info">
                     <div class="profile__name-box">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -27,65 +27,65 @@
             </section>
 
             <section class="cards">
-                <div class="card">
+                <article class="card">
                     <div class="card__photo-box">
                         <img class="card__photo" src="./images/zhangye_danxia.jpg" alt="Фотография">
                     </div>
                     <div class="card__name">
                         <h2 class="card__text">Цветные скалы Чжанъе Данксиа, Китай</h2>
-                        <button class="card__button-like"></button>
+                        <button class="card__button-like" type="button"></button>
                     </div>
-                </div>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <div class="card__photo-box">
                         <img class="card__photo" src="./images/altai.jpg" alt="Фотография">
                     </div>
                     <div class="card__name">
                         <h2 class="card__text">Алтай</h2>
-                        <button class="card__button-like"></button>
+                        <button class="card__button-like" type="button"></button>
                     </div>
-                </div>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <div class="card__photo-box">
                         <img class="card__photo" src="./images/meteora_peaks.jpg" alt="Фотография">
                     </div>
                     <div class="card__name">
                         <h2 class="card__text">Монастырский комплекс Метеоры, Греция</h2>
-                        <button class="card__button-like"></button>
+                        <button class="card__button-like" type="button"></button>
                     </div>
-                </div>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <div class="card__photo-box">
                         <img class="card__photo" src="./images/bagan_myanmar.jpg" alt="Фотография">
                     </div>
                     <div class="card__name">
                         <h2 class="card__text">Баган, Мьянма</h2>
-                        <button class="card__button-like"></button>
+                        <button class="card__button-like" type="button"></button>
                     </div>
-                </div>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <div class="card__photo-box">
                         <img class="card__photo" src="./images/mu_kan_chai.jpg" alt="Фотография">
                     </div>
                     <div class="card__name">
                         <h2 class="card__text">Рисовые террасы в Му Кан Чай, Вьетнам</h2>
-                        <button class="card__button-like"></button>
+                        <button class="card__button-like" type="button"></button>
                     </div>
-                </div>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <div class="card__photo-box">
                         <img class="card__photo" src="./images/venice.jpg" alt="Фотография">
                     </div>
                     <div class="card__name">
                         <h2 class="card__text">Венеция, Италия</h2>
-                        <button class="card__button-like"></button>
+                        <button class="card__button-like" type="button"></button>
                     </div>
-                </div>
+                </article>
             </section>
 
             <footer class="footer">
@@ -95,19 +95,19 @@
 
         <section class="popup">
             <div class="popup__container">
-                <button class="popup__button-close"></button>
+                <button class="popup__button-close" type="button"></button>
                 <div class="popup__content">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <form class="popup__input">
-                        <input class="popup__text popup__name" type="text" placeholder="Имя" minlength="1" maxlength="25">
-                        <input class="popup__text popup__info" type="text" placeholder="О себе" minlength="1" maxlength="30">
+                    <form class="popup__form" name="SubmitEditProfile">
+                        <input class="popup__text popup__text_name" type="text" name="EditName" placeholder="Имя" minlength="1" maxlength="25">
+                        <input class="popup__text popup__text_info" type="text" name="EditInfo" placeholder="О себе" minlength="1" maxlength="30">
                         <button class="popup__button-save" type="submit">Сохранить</button>
                     </form>
                 </div>
             </div>
         </section>
-        <script src="./scripts/index.js"></script>
     </div>
 </div>
+<script src="./scripts/index.js"></script>
 </body>
 </html>
