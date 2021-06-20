@@ -12,8 +12,8 @@ const profileInfoElement = profileElement.querySelector('.profile__text');
 
 
 // Найти поле ввода имени и поле ввода информации
-const inputProfileName = popupElement.querySelector('.popup__text_name');
-const inputProfileInfo = popupElement.querySelector('.popup__text_info');
+const inputProfileName = popupElement.querySelector('.popup__text_input_name');
+const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 
 
 // Находим форму отправки (полей ввода имени и информации) в DOM
