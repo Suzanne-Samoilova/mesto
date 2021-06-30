@@ -49,3 +49,33 @@ popupCloseButtonElement.addEventListener('click', closePopup);
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
 
+
+
+
+//Добавление новой карточки по такому принципу. ЗАМЕНИТЬ все значения
+function addSong(artistValue, titleValue) {
+    const trackContainer = document.createElement('div');
+    trackContainer.classList.add('song');
+
+    const artistElement = document.createElement('h4');
+    artistElement.classList.add('song__artist');
+    artistElement.textContent = artistValue;
+
+    const titleElement = document.createElement('h4');
+    titleElement.classList.add('song__title');
+    titleElement.textContent = titleValue;
+
+    const likeButtonElement = document.createElement('button');
+    likeButtonElement.classList.add('song__like');
+
+
+    addButton.addEventListener('click', function () {
+        const artist = document.querySelector('.input__text_type_artist');
+        const title = document.querySelector('.input__text_type_title');
+
+        addSong(artist.value, title.value);
+        renderHasSongs();
+
+        artist.value = '';
+        title.value = '';
+    });
