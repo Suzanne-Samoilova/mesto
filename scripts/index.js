@@ -1,6 +1,6 @@
 // Кнопка "Редактировать профиль"
 const popupOpenButtonElement = document.querySelector('.profile__button-edit');
-// Весь попап
+// Весь попап редактирования имени пользователя
 const popupElement = document.querySelector('.popup');
 // Кнопка "Закрыть попап"
 const popupCloseButtonElement = popupElement.querySelector('.popup__button-close');
@@ -10,16 +10,16 @@ const profileElement = document.querySelector('.profile');
 const profileNameElement = profileElement.querySelector('.profile__name');
 const profileInfoElement = profileElement.querySelector('.profile__text');
 
-
 // Найти поле ввода имени и поле ввода информации
 const inputProfileName = popupElement.querySelector('.popup__text_input_name');
 const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 
-
 // Находим форму отправки (полей ввода имени и информации) в DOM
 const formElement = document.querySelector('.popup__form');
+// ___________________________________________________________________________________________________________________________
 
-// Переключение всплывающего окна
+
+// Переключение всплывающего окна Редактирования профиля
 const openPopup = function () {
     popupElement.classList.add('popup_opened')
     //Значение полей ввода взято со страницы
@@ -31,11 +31,9 @@ const closePopup = function () {
     popupElement.classList.remove('popup_opened')
 }
 
-
 // Открыть попап по кнопке редактирования/ закрыть по кнопке крестика
 popupOpenButtonElement.addEventListener('click', openPopup);
 popupCloseButtonElement.addEventListener('click', closePopup);
-
 
 // Обработчик «отправки» формы (пока никуда отправляться не будет)
     function formSubmitHandler (evt) {
@@ -45,37 +43,43 @@ popupCloseButtonElement.addEventListener('click', closePopup);
         closePopup();
     }
 
-
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
 
 
+// ___________________________________________________________________________________________________________________________
+// Кнопка Добавить место
+const popupOpenButtonAddPlace = document.querySelector('.profile__button-add');
+// Попап добавления места
+const popupAddPlace = document.querySelector('.popup_add-card');
+// Кнопка закрыть попап добавления
+const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup_button-close');
+
+// Открыть попап добавления места
+const openPopupAddPlace = function () {
+    popupAddPlace.classList.add('popup_opened')
+}
+popupOpenButtonAddPlace.addEventListener('click', openPopupAddPlace);
+
+// Закрыть попап добавления места
+// const closePopupAddPlace = function () {
+//     popupAddPlace.classList.remove('popup_opened')
+// }
+// buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
+
+// Заменила на стрелочную функцию, проверить
+buttonClosePopupAddPlace.addEventListener('click', () => {popupAddPlace.classList.remove('popup_opened')});
+
+// ___________________________________________________________________________________________________________________________
 
 
-//Добавление новой карточки по такому принципу. ЗАМЕНИТЬ все значения
-function addSong(artistValue, titleValue) {
-    const trackContainer = document.createElement('div');
-    trackContainer.classList.add('song');
+// Найти все карточки
+const cards = document.querySelectorAll('.card');
 
-    const artistElement = document.createElement('h4');
-    artistElement.classList.add('song__artist');
-    artistElement.textContent = artistValue;
-
-    const titleElement = document.createElement('h4');
-    titleElement.classList.add('song__title');
-    titleElement.textContent = titleValue;
-
-    const likeButtonElement = document.createElement('button');
-    likeButtonElement.classList.add('song__like');
-
-
-    addButton.addEventListener('click', function () {
-        const artist = document.querySelector('.input__text_type_artist');
-        const title = document.querySelector('.input__text_type_title');
-
-        addSong(artist.value, title.value);
-        renderHasSongs();
-
-        artist.value = '';
-        title.value = '';
-    });
+cards.forEach(function (card) {
+    // Найти кнопку лайка во всех карточках
+    const buttonLike = card.querySelector('.card__button-like');
+    // Добавить класс с тёмным лайком или удалить его
+    buttonLike.addEventListener('click',() => {buttonLike.classList.toggle('card__button-like_active')});
+});
+// ___________________________________________________________________________________________________________________________
