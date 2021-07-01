@@ -1,3 +1,4 @@
+// Поиск
 // Кнопка "Редактировать профиль"
 const popupOpenButtonElement = document.querySelector('.profile__button-edit');
 // Весь попап редактирования имени пользователя
@@ -19,7 +20,8 @@ const formElement = document.querySelector('.popup__form');
 // ___________________________________________________________________________________________________________________________
 
 
-// Переключение всплывающего окна Редактирования профиля
+// Попап "Редактировать профиль"
+// Открыть попап редактирования
 const openPopup = function () {
     popupElement.classList.add('popup_opened')
     //Значение полей ввода взято со страницы
@@ -27,6 +29,7 @@ const openPopup = function () {
     inputProfileInfo.value = profileInfoElement.textContent;
 }
 
+// Закрыть попап редактирования
 const closePopup = function () {
     popupElement.classList.remove('popup_opened')
 }
@@ -45,9 +48,10 @@ popupCloseButtonElement.addEventListener('click', closePopup);
 
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
-
-
 // ___________________________________________________________________________________________________________________________
+
+
+// Добавить карточки
 // Кнопка Добавить место
 const popupOpenButtonAddPlace = document.querySelector('.profile__button-add');
 // Попап добавления места
@@ -56,12 +60,16 @@ const popupAddPlace = document.querySelector('.popup_add-card');
 const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup_button-close');
 
 // Открыть попап добавления места
-const openPopupAddPlace = function () {
-    popupAddPlace.classList.add('popup_opened')
-}
-popupOpenButtonAddPlace.addEventListener('click', openPopupAddPlace);
+
+// const openPopupAddPlace = function () {
+//     popupAddPlace.classList.add('popup_opened')
+// }
+
+// Заменила на стрелочную функцию, проверить
+popupOpenButtonAddPlace.addEventListener('click', () => {popupAddPlace.classList.add('popup_opened')});
 
 // Закрыть попап добавления места
+
 // const closePopupAddPlace = function () {
 //     popupAddPlace.classList.remove('popup_opened')
 // }
@@ -69,13 +77,13 @@ popupOpenButtonAddPlace.addEventListener('click', openPopupAddPlace);
 
 // Заменила на стрелочную функцию, проверить
 buttonClosePopupAddPlace.addEventListener('click', () => {popupAddPlace.classList.remove('popup_opened')});
-
 // ___________________________________________________________________________________________________________________________
 
 
 // Найти все карточки
 const cards = document.querySelectorAll('.card');
 
+// Перебрать все карточки на лайк
 cards.forEach(function (card) {
     // Найти кнопку лайка во всех карточках
     const buttonLike = card.querySelector('.card__button-like');
@@ -83,3 +91,5 @@ cards.forEach(function (card) {
     buttonLike.addEventListener('click',() => {buttonLike.classList.toggle('card__button-like_active')});
 });
 // ___________________________________________________________________________________________________________________________
+
+
