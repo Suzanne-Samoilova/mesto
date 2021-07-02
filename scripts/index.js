@@ -89,33 +89,27 @@ const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup_button-clos
 popupOpenButtonAddPlace.addEventListener('click', () => {popupAddPlace.classList.add('popup_opened')});
 
 // Закрыть попап добавления места
-// Заменила на стрелочную функцию, проверить
-buttonClosePopupAddPlace.addEventListener('click', () => {popupAddPlace.classList.remove('popup_opened')});
+const closePopupAddPlace = function () {
+    popupAddPlace.classList.remove('popup_opened')
+}
+buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
 
 
-//
-
-
-
-// // Найти поле имени на карточке и img для ссылки
-// const cardNamePlace = cards.querySelector('.card__text');
-// const  cardImgPlace = cards.querySelector('.card__photo');
+// Найти поля ввода названия и ссылки в попапе
+const inputNameNewPlace = popupAddPlace.querySelector('.popup_input_name-place');
+console.log(inputNameNewPlace);
+const inputLinkNewPlace = popupAddPlace.querySelector('.popup_input_link');
+console.log(inputLinkNewPlace);
 
 // Находим форму отправки (полей названия и ссылки) в DOM
 const formNewPlace = document.querySelector('.popup_form-add');
-
+console.log(formNewPlace);
 
 // Обработчик «отправки» формы названия места и ссылки
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
 
-    // // Найти поля ввода названия и ссылки в попапе
-    const inputNameNewPlace = popupAddPlace.querySelector('.popup_input_name-place');
-    const inputLinkNewPlace = popupAddPlace.querySelector('.popup_input_link');
-    console.log();
-
-
-    // Добавление карточки по шаблону template
+// Добавление карточки по шаблону template
 // Нашли шаблон и обратились к его содержимому
     const userTemplate = document.querySelector('#newcard').content;
 // Найти блок со всеми карточками, куда надо добавить новую
@@ -123,28 +117,17 @@ function formSubmitPlaceHandler (evt) {
 //клонируем содержимое тега template
     const userElement = userTemplate.querySelector('.card').cloneNode(true);
 
-
-    // наполняем содержимым
-    // userElement.querySelector('.card__photo').src = evt.AddLinkPlace;
-    // userElement.querySelector('.card__text').textContent = evt.AddNamePlace;
-
+// Наполняем содержимым
+    userElement.querySelector('.card__text').textContent = inputNameNewPlace.value;
+    userElement.querySelector('.card__photo').src = inputLinkNewPlace.value;
+// Слушать лайк
     likeHandler(userElement);
 
 // отображаем на странице
     blockAllCards.prepend(userElement);
-
-    closePopup();
+// Закрыть после нажатия кнопки "Создать"
+    closePopupAddPlace();
 }
 
 // Обработчик формы, следит за событием “submit” - кнопка "Создать"
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
-// ___________________________________________________________________________________________________________________________
-
-
-// ДОДЕЛАТЬ
-
-
-
-// ___________________________________________________________________________________________________________________________
-
-
