@@ -97,13 +97,10 @@ buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
 
 // Найти поля ввода названия и ссылки в попапе
 const inputNameNewPlace = popupAddPlace.querySelector('.popup_input_name-place');
-console.log(inputNameNewPlace);
 const inputLinkNewPlace = popupAddPlace.querySelector('.popup_input_link');
-console.log(inputLinkNewPlace);
 
 // Находим форму отправки (полей названия и ссылки) в DOM
 const formNewPlace = document.querySelector('.popup_form-add');
-console.log(formNewPlace);
 
 // Обработчик «отправки» формы названия места и ссылки
 function formSubmitPlaceHandler (evt) {
@@ -120,8 +117,10 @@ function formSubmitPlaceHandler (evt) {
 // Наполняем содержимым
     userElement.querySelector('.card__text').textContent = inputNameNewPlace.value;
     userElement.querySelector('.card__photo').src = inputLinkNewPlace.value;
-// Слушать лайк
+// Слушать Лайк
     likeHandler(userElement);
+// Слушать Удалить
+    deleteCard(userElement);
 
 // отображаем на странице
     blockAllCards.prepend(userElement);
@@ -131,3 +130,18 @@ function formSubmitPlaceHandler (evt) {
 
 // Обработчик формы, следит за событием “submit” - кнопка "Создать"
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
+// ___________________________________________________________________________________________________________________________
+
+
+// Удаление карточки
+const deleteCard = function (card) {
+    // Найти кнопку удаления во всех карточках
+    const buttonDelete = card.querySelector('.card__button-delete');
+    // Удалить элемент списка, передав его класс
+    buttonDelete.addEventListener('click',() => {buttonDelete.closest('.card').remove()});
+}
+
+// Перебрать все карточки на удаление
+cards.forEach(deleteCard);
+// ___________________________________________________________________________________________________________________________
+
