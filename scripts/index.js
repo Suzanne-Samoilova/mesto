@@ -73,7 +73,7 @@ const popupOpenButtonAddPlace = document.querySelector('.profile__button-add');
 // Попап добавления места
 const popupAddPlace = document.querySelector('.popup_add-card');
 // Кнопка закрыть попап добавления
-const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup_button-close');
+const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-close_add-card');
 
 // Открыть попап добавления места
 // Заменила на стрелочную функцию, проверить
@@ -89,11 +89,11 @@ buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
 
 
 // Найти поля ввода названия и ссылки в попапе
-const inputNameNewPlace = popupAddPlace.querySelector('.popup_input_name-place');
-const inputLinkNewPlace = popupAddPlace.querySelector('.popup_input_link');
+const inputNameNewPlace = popupAddPlace.querySelector('.popup__text_input_name-place');
+const inputLinkNewPlace = popupAddPlace.querySelector('.popup__text_input_link');
 
 // Находим форму отправки (полей названия и ссылки) в DOM
-const formNewPlace = document.querySelector('.popup_form-add');
+const formNewPlace = document.querySelector('.popup__form_add');
 
 // Обработчик «отправки» формы названия места и ссылки
 function formSubmitPlaceHandler (evt) {
