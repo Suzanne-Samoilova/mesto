@@ -76,10 +76,7 @@ const popupAddPlace = document.querySelector('.popup_add-card');
 const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-close_add-card');
 
 // Открыть попап добавления места
-// Заменила на стрелочную функцию, проверить
 popupOpenButtonAddPlace.addEventListener('click', () => {popupAddPlace.classList.add('popup_opened')});
-
-
 
 // Закрыть попап добавления места
 const closePopupAddPlace = function () {
@@ -98,7 +95,6 @@ const formNewPlace = document.querySelector('.popup__form_add');
 // Обработчик «отправки» формы названия места и ссылки
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
-
 // Добавление карточки по шаблону template
 // Нашли шаблон и обратились к его содержимому
     const cardTemplate = document.querySelector('#newcard').content;
@@ -106,7 +102,6 @@ function formSubmitPlaceHandler (evt) {
     const cards = document.querySelector('.cards');
 //клонируем содержимое тега template
     const card = cardTemplate.querySelector('.card').cloneNode(true);
-
 // Наполняем содержимым
     card.querySelector('.card__text').textContent = inputNameNewPlace.value;
     card.querySelector('.card__photo').src = inputLinkNewPlace.value;
@@ -116,8 +111,6 @@ function formSubmitPlaceHandler (evt) {
     deleteCardHandler(card);
 // Слушать Развернуть изображение
     openPopupExpandHandler(card);
-
-
 // отображаем на странице
     cards.prepend(card);
 // Закрыть после нажатия кнопки "Создать"
@@ -177,4 +170,50 @@ const closePopupExpand = function () {
 }
 
 buttonCloseExpand.addEventListener('click', closePopupExpand);
+// ___________________________________________________________________________________________________________________________
 
+
+// Массив изображений
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+//Функция рендера карточек из массива
+initialCards.forEach(function (element) {
+    const cardTemplate = document.querySelector('#newcard').content;
+    const cards = document.querySelector('.cards');
+    const card = cardTemplate.querySelector('.card').cloneNode(true);
+    card.querySelector('.card__photo').src = element.link;
+    card.querySelector('.card__text').textContent = element.name;
+// Слушать Лайк
+    likeHandler(card);
+// Слушать Удалить
+    deleteCardHandler(card);
+// Слушать Развернуть изображение
+    openPopupExpandHandler(card);
+// отображаем на странице
+    cards.prepend(card);
+});
