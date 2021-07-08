@@ -1,10 +1,10 @@
 // Поиск
-// Кнопка "Редактировать профиль"
-const popupOpenButtonElement = document.querySelector('.profile__button-edit');
 // Весь попап редактирования имени пользователя
 const popupElement = document.querySelector('.popup');
+// Кнопка "Редактировать профиль"
+const buttonOpenPopupElement = document.querySelector('.profile__button-edit');
 // Кнопка "Закрыть попап"
-const popupCloseButtonElement = popupElement.querySelector('.popup__button-close');
+const buttonClosePopupElement = popupElement.querySelector('.popup__button-close');
 
 // Найти имя пользователя "Жак-Ив Кусто" и инфо пользователя "Исследователь океана"
 const profileElement = document.querySelector('.profile');
@@ -17,6 +17,9 @@ const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 
 // Находим форму отправки (полей ввода имени и информации) в DOM
 const formElement = document.querySelector('.popup__form');
+
+// Весь блок с карточками
+const cards = document.querySelector('.cards');
 // ___________________________________________________________________________________________________________________________
 
 // Открыть попап
@@ -28,7 +31,7 @@ function openPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened')
 }
-
+// ___________________________________________________________________________________________________________________________
 
 // Попап "Редактировать профиль"
 // Открыть попап редактирования
@@ -45,8 +48,8 @@ const closePopupEditProfile = function () {
 }
 
 // Открыть попап по кнопке редактирования/ закрыть по кнопке крестика
-popupOpenButtonElement.addEventListener('click', openPopupEditProfile);
-popupCloseButtonElement.addEventListener('click', closePopupEditProfile);
+buttonOpenPopupElement.addEventListener('click', openPopupEditProfile);
+buttonClosePopupElement.addEventListener('click', closePopupEditProfile);
 
 // Обработчик «отправки» формы (пока никуда отправляться не будет)
 function formSubmitHandler (evt) {
@@ -60,11 +63,7 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 // ___________________________________________________________________________________________________________________________
 
-
 // Лайки
-// Найти все карточки
-// const cards = document.querySelectorAll('.card');
-
 const addLikeHandler = function (card) {
     // Найти кнопку лайка во всех карточках
     const buttonLike = card.querySelector('.card__button-like');
@@ -73,18 +72,19 @@ const addLikeHandler = function (card) {
 }
 // ___________________________________________________________________________________________________________________________
 
-
 // Попап Добавить карточки
 // Кнопка Добавить место
 const buttonOpenPopupAddPlace = document.querySelector('.profile__button-add');
 // Попап добавления места
 const popupAddPlace = document.querySelector('.popup_add-card');
-// Кнопка закрыть попап добавления
+// Кнопка Закрыть попап добавления
 const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-close_add-card');
 
 // Открыть попап добавления места
 const openPopupAddPlace = function () {
-    openPopup(popupAddPlace)
+    openPopup(popupAddPlace);
+    inputNameNewPlace.value = '';
+    inputLinkNewPlace.value = '';
 }
 buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 
@@ -101,35 +101,37 @@ const inputLinkNewPlace = popupAddPlace.querySelector('.popup__text_input_link')
 // Находим форму отправки (полей названия и ссылки) в DOM
 const formNewPlace = document.querySelector('.popup__form_add');
 
-// Обработчик «отправки» формы названия места и ссылки
+// Создать карточку из Template
+const createCard = function (name, photo) {
+    // Нашли шаблон и обратились к его содержимому
+    const cardTemplate = document.querySelector('#newcard').content;
+    //клонируем содержимое тега template
+    const card = cardTemplate.querySelector('.card').cloneNode(true);
+    card.querySelector('.card__text').textContent = name;
+    card.querySelector('.card__photo').src = photo;
+    // Слушать Лайк
+    addLikeHandler(card);
+    // Слушать Удалить
+    deleteCard(card);
+    // Слушать Развернуть изображение
+    openPopupExpand(card);
+    return card;
+}
+
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
-// Добавление карточки по шаблону template
-// Нашли шаблон и обратились к его содержимому
-    const cardTemplate = document.querySelector('#newcard').content;
-// Найти блок со всеми карточками, куда надо добавить новую
-    const cards = document.querySelector('.cards');
-//клонируем содержимое тега template
-    const card = cardTemplate.querySelector('.card').cloneNode(true);
-// Наполняем содержимым
-    card.querySelector('.card__text').textContent = inputNameNewPlace.value;
-    card.querySelector('.card__photo').src = inputLinkNewPlace.value;
-// Слушать Лайк
-    addLikeHandler(card);
-// Слушать Удалить
-    deleteCard(card);
-// Слушать Развернуть изображение
-    expandImg(card);
-// отображаем на странице
+    name = inputNameNewPlace.value;
+    photo = inputLinkNewPlace.value;
+    const card = createCard(name, photo);
+    // отображаем на странице
     cards.prepend(card);
-// Закрыть после нажатия кнопки "Создать"
+    // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
 }
 
 // Обработчик формы, следит за событием “submit” - кнопка "Создать"
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
 // ___________________________________________________________________________________________________________________________
-
 
 // Удаление карточки
 const deleteCard = function (card) {
@@ -138,33 +140,32 @@ const deleteCard = function (card) {
     // Удалить элемент списка, передав его класс
     buttonDelete.addEventListener('click',() => {buttonDelete.closest('.card').remove()});
 }
-
 // ___________________________________________________________________________________________________________________________
-
 
 // Попап Открыть изображение
 // Попап с развернутой картинкой
 const popupExpand = document.querySelector('.popup_expand');
 // Кнопка закрыть развернутую картинку
-const buttonCloseExpand = popupExpand.querySelector('.popup__button-close-expand');
+const buttonClosePopupExpand = popupExpand.querySelector('.popup__button-close-expand');
 // Название места на попапе разворота
-const nameExpandPlace = popupExpand.querySelector('.popup__name-expand');
+const namePopupExpand = popupExpand.querySelector('.popup__name-expand');
 // Развернутая картинка в попапе
-const imgExpand = popupExpand.querySelector('.popup__img-expand');
+const photoPopupExpand = popupExpand.querySelector('.popup__img-expand');
 
 // Открыть попап разворота
-const expandImg = function (card) {
-    // Найти картинку (которую нужно открыть) на карточке
-    const img = card.querySelector('.card__photo');
+const openPopupExpand = function (card) {
     // Название маста на карточке
-    const nameCard = card.querySelector('.card__text');
+    const name = card.querySelector('.card__text');
+    // Найти картинку (которую нужно открыть) на карточке
+    const photo = card.querySelector('.card__photo');
 
-    img.addEventListener('click',() => {
+    photo.addEventListener('click',() => {
         openPopup(popupExpand);
         // Взять название из карточки
-        nameExpandPlace.textContent = nameCard.textContent;
+        namePopupExpand.textContent = name.textContent;
         // Взять ссылку из карточки
-        imgExpand.src = img.src;
+        photoPopupExpand.src = photo.src;
+        photoPopupExpand.alt = photo.alt;
     });
 }
 
@@ -172,24 +173,14 @@ const expandImg = function (card) {
 const closePopupExpand = function () {
     closePopup(popupExpand)
 }
-buttonCloseExpand.addEventListener('click', closePopupExpand);
+buttonClosePopupExpand.addEventListener('click', closePopupExpand);
 // ___________________________________________________________________________________________________________________________
-
 
 //Функция рендера карточек из массива
 initialCards.forEach(function (element) {
-    const cardTemplate = document.querySelector('#newcard').content;
-    const cards = document.querySelector('.cards');
-    const card = cardTemplate.querySelector('.card').cloneNode(true);
-    card.querySelector('.card__photo').src = element.link;
-    card.querySelector('.card__text').textContent = element.name;
-// Слушать Лайк
-    addLikeHandler(card);
-// Слушать Удалить
-    deleteCard(card);
-// Слушать Развернуть изображение
-    expandImg(card);
-// отображаем на странице
+    const card = createCard(name = element.name, photo = element.link);
+    // отображаем на странице
     cards.prepend(card);
+    // Закрыть после нажатия кнопки "Создать"
+    closePopupAddPlace();
 });
-
