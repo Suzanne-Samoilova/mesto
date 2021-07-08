@@ -37,7 +37,7 @@
         </main>
 
 <!--Попап Редактировать профиль-->
-        <section class="popup">
+        <div class="popup">
             <div class="popup__container">
                 <button class="popup__button-close" type="button"></button>
                 <div class="popup__content">
@@ -49,10 +49,10 @@
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
 
 <!--Попап Добавить новое место-->
-        <section class="popup popup_add-card">
+        <div class="popup popup_add-card">
             <div class="popup__container">
                 <button class="popup__button-close popup__button-close_add-card" type="button"></button>
                 <div class="popup__content">
@@ -64,16 +64,16 @@
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
 
 <!--Попап Развернуть картинку на весь экран-->
-        <section class="popup popup_expand">
+        <div class="popup popup_expand">
             <div class="popup__container-expand">
                 <img class="popup__img-expand" alt="Изображение">
                 <h2 class="popup__name-expand"></h2>
                 <button class="popup__button-close popup__button-close-expand" type="button"></button>
             </div>
-        </section>
+        </div>
 
 <!--Шаблон новой карточки-->
         <template id="newcard">
@@ -90,6 +90,7 @@
         </template>
     </div>
 </div>
+<script src="./scripts/initial-сards.js"></script>
 <script src="./scripts/index.js"></script>
 </body>
 </html>

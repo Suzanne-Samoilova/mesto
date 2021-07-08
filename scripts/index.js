@@ -19,23 +19,30 @@ const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 const formElement = document.querySelector('.popup__form');
 // ___________________________________________________________________________________________________________________________
 
-
-// Попап "Редактировать профиль"
-// Открыть попап редактирования
-const openPopup = function () {
+// Открыть попап
+function openPopup() {
     popupElement.classList.add('popup_opened')
-    //Значение полей ввода взято со страницы
-    inputProfileName.value = profileNameElement.textContent;
-    inputProfileInfo.value = profileInfoElement.textContent;
 }
 
-// Закрыть попап редактирования
-const closePopup = function () {
+// Закрыть попап
+function closePopup() {
     popupElement.classList.remove('popup_opened')
 }
 
+
+// Попап "Редактировать профиль"
+// Открыть попап редактирования
+function openProfilePopup() {
+    // Значение полей ввода взято со страницы
+    inputProfileName.value = profileNameElement.textContent;
+    inputProfileInfo.value = profileInfoElement.textContent;
+    // Открыть попап
+    openPopup();
+}
+
+
 // Открыть попап по кнопке редактирования/ закрыть по кнопке крестика
-popupOpenButtonElement.addEventListener('click', openPopup);
+popupOpenButtonElement.addEventListener('click', openProfilePopup);
 popupCloseButtonElement.addEventListener('click', closePopup);
 
 // Обработчик «отправки» формы (пока никуда отправляться не будет)
@@ -55,7 +62,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 // Найти все карточки
 const cards = document.querySelectorAll('.card');
 
-const likeHandler = function (card) {
+const addLikeHandler = function (card) {
     // Найти кнопку лайка во всех карточках
     const buttonLike = card.querySelector('.card__button-like');
     // Добавить класс с тёмным лайком или удалить его
@@ -63,7 +70,7 @@ const likeHandler = function (card) {
 }
 
 // Перебрать все карточки на лайк
-cards.forEach(likeHandler);
+cards.forEach(addLikeHandler);
 // ___________________________________________________________________________________________________________________________
 
 
@@ -77,6 +84,8 @@ const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-clo
 
 // Открыть попап добавления места
 popupOpenButtonAddPlace.addEventListener('click', () => {popupAddPlace.classList.add('popup_opened')});
+
+
 
 // Закрыть попап добавления места
 const closePopupAddPlace = function () {
@@ -106,11 +115,11 @@ function formSubmitPlaceHandler (evt) {
     card.querySelector('.card__text').textContent = inputNameNewPlace.value;
     card.querySelector('.card__photo').src = inputLinkNewPlace.value;
 // Слушать Лайк
-    likeHandler(card);
+    addLikeHandler(card);
 // Слушать Удалить
-    deleteCardHandler(card);
+    deleteCard(card);
 // Слушать Развернуть изображение
-    openPopupExpandHandler(card);
+    expandImg(card);
 // отображаем на странице
     cards.prepend(card);
 // Закрыть после нажатия кнопки "Создать"
@@ -123,7 +132,7 @@ formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
 
 
 // Удаление карточки
-const deleteCardHandler = function (card) {
+const deleteCard = function (card) {
     // Найти кнопку удаления во всех карточках
     const buttonDelete = card.querySelector('.card__button-delete');
     // Удалить элемент списка, передав его класс
@@ -131,7 +140,7 @@ const deleteCardHandler = function (card) {
 }
 
 // Перебрать все карточки на удаление
-cards.forEach(deleteCardHandler);
+cards.forEach(deleteCard);
 // ___________________________________________________________________________________________________________________________
 
 
@@ -146,7 +155,7 @@ const nameExpandPlace = popupExpand.querySelector('.popup__name-expand');
 const imgExpand = popupExpand.querySelector('.popup__img-expand');
 
 // Открыть попап
-const openPopupExpandHandler = function (card) {
+const expandImg = function (card) {
     // Найти картинку (которую нужно открыть) на карточке
     const img = card.querySelector('.card__photo');
     // Название маста на карточке
@@ -162,7 +171,7 @@ const openPopupExpandHandler = function (card) {
 }
 
 // Перебрать все карточки на развернуть изображения
-cards.forEach(openPopupExpandHandler);
+cards.forEach(expandImg);
 
 // Закрыть попап
 const closePopupExpand = function () {
@@ -173,34 +182,6 @@ buttonCloseExpand.addEventListener('click', closePopupExpand);
 // ___________________________________________________________________________________________________________________________
 
 
-// Массив изображений
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 //Функция рендера карточек из массива
 initialCards.forEach(function (element) {
     const cardTemplate = document.querySelector('#newcard').content;
@@ -209,11 +190,12 @@ initialCards.forEach(function (element) {
     card.querySelector('.card__photo').src = element.link;
     card.querySelector('.card__text').textContent = element.name;
 // Слушать Лайк
-    likeHandler(card);
+    addLikeHandler(card);
 // Слушать Удалить
-    deleteCardHandler(card);
+    deleteCard(card);
 // Слушать Развернуть изображение
-    openPopupExpandHandler(card);
+    expandImg(card);
 // отображаем на странице
     cards.prepend(card);
 });
+
