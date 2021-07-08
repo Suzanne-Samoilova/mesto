@@ -20,38 +20,41 @@ const formElement = document.querySelector('.popup__form');
 // ___________________________________________________________________________________________________________________________
 
 // Открыть попап
-function openPopup() {
-    popupElement.classList.add('popup_opened')
+function openPopup(popup) {
+    popup.classList.add('popup_opened')
 }
 
 // Закрыть попап
-function closePopup() {
-    popupElement.classList.remove('popup_opened')
+function closePopup(popup) {
+    popup.classList.remove('popup_opened')
 }
 
 
 // Попап "Редактировать профиль"
 // Открыть попап редактирования
-function openProfilePopup() {
+function openPopupEditProfile() {
     // Значение полей ввода взято со страницы
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
-    // Открыть попап
-    openPopup();
+    openPopup(popupElement);
 }
 
+// Закрыть попап редактирования
+const closePopupEditProfile = function () {
+    closePopup(popupElement);
+}
 
 // Открыть попап по кнопке редактирования/ закрыть по кнопке крестика
-popupOpenButtonElement.addEventListener('click', openProfilePopup);
-popupCloseButtonElement.addEventListener('click', closePopup);
+popupOpenButtonElement.addEventListener('click', openPopupEditProfile);
+popupCloseButtonElement.addEventListener('click', closePopupEditProfile);
 
 // Обработчик «отправки» формы (пока никуда отправляться не будет)
-    function formSubmitHandler (evt) {
-        evt.preventDefault();
-        profileNameElement.textContent = inputProfileName.value;
-        profileInfoElement.textContent = inputProfileInfo.value;
-        closePopup();
-    }
+function formSubmitHandler (evt) {
+    evt.preventDefault();
+    profileNameElement.textContent = inputProfileName.value;
+    profileInfoElement.textContent = inputProfileInfo.value;
+    closePopup(popupElement);
+}
 
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
@@ -60,7 +63,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 // Лайки
 // Найти все карточки
-const cards = document.querySelectorAll('.card');
+// const cards = document.querySelectorAll('.card');
 
 const addLikeHandler = function (card) {
     // Найти кнопку лайка во всех карточках
@@ -68,31 +71,28 @@ const addLikeHandler = function (card) {
     // Добавить класс с тёмным лайком или удалить его
     buttonLike.addEventListener('click',() => {buttonLike.classList.toggle('card__button-like_active')});
 }
-
-// Перебрать все карточки на лайк
-cards.forEach(addLikeHandler);
 // ___________________________________________________________________________________________________________________________
 
 
 // Попап Добавить карточки
 // Кнопка Добавить место
-const popupOpenButtonAddPlace = document.querySelector('.profile__button-add');
+const buttonOpenPopupAddPlace = document.querySelector('.profile__button-add');
 // Попап добавления места
 const popupAddPlace = document.querySelector('.popup_add-card');
 // Кнопка закрыть попап добавления
 const buttonClosePopupAddPlace = popupAddPlace.querySelector('.popup__button-close_add-card');
 
 // Открыть попап добавления места
-popupOpenButtonAddPlace.addEventListener('click', () => {popupAddPlace.classList.add('popup_opened')});
-
-
+const openPopupAddPlace = function () {
+    openPopup(popupAddPlace)
+}
+buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 
 // Закрыть попап добавления места
 const closePopupAddPlace = function () {
-    popupAddPlace.classList.remove('popup_opened')
+    closePopup(popupAddPlace)
 }
 buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
-
 
 // Найти поля ввода названия и ссылки в попапе
 const inputNameNewPlace = popupAddPlace.querySelector('.popup__text_input_name-place');
@@ -139,8 +139,6 @@ const deleteCard = function (card) {
     buttonDelete.addEventListener('click',() => {buttonDelete.closest('.card').remove()});
 }
 
-// Перебрать все карточки на удаление
-cards.forEach(deleteCard);
 // ___________________________________________________________________________________________________________________________
 
 
@@ -149,12 +147,12 @@ cards.forEach(deleteCard);
 const popupExpand = document.querySelector('.popup_expand');
 // Кнопка закрыть развернутую картинку
 const buttonCloseExpand = popupExpand.querySelector('.popup__button-close-expand');
-// Название места на попапе
+// Название места на попапе разворота
 const nameExpandPlace = popupExpand.querySelector('.popup__name-expand');
 // Развернутая картинка в попапе
 const imgExpand = popupExpand.querySelector('.popup__img-expand');
 
-// Открыть попап
+// Открыть попап разворота
 const expandImg = function (card) {
     // Найти картинку (которую нужно открыть) на карточке
     const img = card.querySelector('.card__photo');
@@ -162,7 +160,7 @@ const expandImg = function (card) {
     const nameCard = card.querySelector('.card__text');
 
     img.addEventListener('click',() => {
-        popupExpand.classList.add('popup_opened')
+        openPopup(popupExpand);
         // Взять название из карточки
         nameExpandPlace.textContent = nameCard.textContent;
         // Взять ссылку из карточки
@@ -170,14 +168,10 @@ const expandImg = function (card) {
     });
 }
 
-// Перебрать все карточки на развернуть изображения
-cards.forEach(expandImg);
-
 // Закрыть попап
 const closePopupExpand = function () {
-    popupExpand.classList.remove('popup_opened')
+    closePopup(popupExpand)
 }
-
 buttonCloseExpand.addEventListener('click', closePopupExpand);
 // ___________________________________________________________________________________________________________________________
 
