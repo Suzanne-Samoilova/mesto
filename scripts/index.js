@@ -108,6 +108,7 @@ const createCard = function (name, photo) {
     //клонируем содержимое тега template
     const card = cardTemplate.querySelector('.card').cloneNode(true);
     card.querySelector('.card__text').textContent = name;
+    card.querySelector('.card__photo').alt = name;
     card.querySelector('.card__photo').src = photo;
     // Слушать Лайк
     addLikeHandler(card);
@@ -118,13 +119,19 @@ const createCard = function (name, photo) {
     return card;
 }
 
-function formSubmitPlaceHandler (evt) {
-    evt.preventDefault();
-    name = inputNameNewPlace.value;
-    photo = inputLinkNewPlace.value;
+// Создать карточку и поставить в начало
+function renderCard (name, photo) {
     const card = createCard(name, photo);
     // отображаем на странице
     cards.prepend(card);
+}
+
+// Форма
+function formSubmitPlaceHandler (evt) {
+    evt.preventDefault();
+    const name = inputNameNewPlace.value;
+    const photo = inputLinkNewPlace.value;
+    renderCard(name, photo);
     // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
 }
@@ -178,9 +185,5 @@ buttonClosePopupExpand.addEventListener('click', closePopupExpand);
 
 //Функция рендера карточек из массива
 initialCards.forEach(function (element) {
-    const card = createCard(name = element.name, photo = element.link);
-    // отображаем на странице
-    cards.prepend(card);
-    // Закрыть после нажатия кнопки "Создать"
-    closePopupAddPlace();
+    renderCard(element.name, element.link)
 });
