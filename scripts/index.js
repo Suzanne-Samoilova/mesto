@@ -16,10 +16,11 @@ const inputProfileName = popupElement.querySelector('.popup__text_input_name');
 const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 
 // Находим форму отправки (полей ввода имени и информации) в DOM
-const formElement = document.querySelector('.popup__form');
+const formElementPopup = document.querySelector('.popup__form');
 
 // Весь блок с карточками
 const cards = document.querySelector('.cards');
+
 // ___________________________________________________________________________________________________________________________
 
 // Открыть попап
@@ -31,6 +32,7 @@ function openPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened')
 }
+
 // ___________________________________________________________________________________________________________________________
 
 // Попап "Редактировать профиль"
@@ -60,7 +62,8 @@ function formSubmitHandler (evt) {
 }
 
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить"
-formElement.addEventListener('submit', formSubmitHandler);
+formElementPopup.addEventListener('submit', formSubmitHandler);
+
 // ___________________________________________________________________________________________________________________________
 
 // Лайки
@@ -70,6 +73,7 @@ const addLikeHandler = function (card) {
     // Добавить класс с тёмным лайком или удалить его
     buttonLike.addEventListener('click',() => {buttonLike.classList.toggle('card__button-like_active')});
 }
+
 // ___________________________________________________________________________________________________________________________
 
 // Попап Добавить карточки
@@ -138,6 +142,7 @@ function formSubmitPlaceHandler (evt) {
 
 // Обработчик формы, следит за событием “submit” - кнопка "Создать"
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
+
 // ___________________________________________________________________________________________________________________________
 
 // Удаление карточки
@@ -147,6 +152,7 @@ const deleteCard = function (card) {
     // Удалить элемент списка, передав его класс
     buttonDelete.addEventListener('click',() => {buttonDelete.closest('.card').remove()});
 }
+
 // ___________________________________________________________________________________________________________________________
 
 // Попап Открыть изображение
@@ -181,9 +187,13 @@ const closePopupExpand = function () {
     closePopup(popupExpand)
 }
 buttonClosePopupExpand.addEventListener('click', closePopupExpand);
+
 // ___________________________________________________________________________________________________________________________
 
 //Функция рендера карточек из массива
 initialCards.forEach(function (element) {
     renderCard(element.name, element.link)
 });
+
+// ___________________________________________________________________________________________________________________________
+

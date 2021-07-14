@@ -13,3 +13,7 @@
     overflow: hidden;
     margin-top: 27px;
 }
+
+.popup__text:invalid {
+    border-bottom-color: #FF0000;
+}
