@@ -25,12 +25,18 @@ const cards = document.querySelector('.cards');
 
 // Открыть попап
 function openPopup(popup) {
-    popup.classList.add('popup_opened')
+    popup.classList.add('popup_opened');
+
+    document.addEventListener('click', closePopupByClickOnOverlay);
+    document.addEventListener('keydown', closePopupByClickOnEsc);
 }
 
 // Закрыть попап
 function closePopup(popup) {
-    popup.classList.remove('popup_opened')
+    popup.classList.remove('popup_opened');
+
+    document.removeEventListener('click', closePopupByClickOnOverlay);
+    document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
 
 // ___________________________________________________________________________________________________________________________
@@ -42,6 +48,7 @@ function openPopupEditProfile() {
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
     openPopup(popupElement);
+    enableValidation();
 }
 
 // Закрыть попап редактирования
@@ -89,6 +96,7 @@ const openPopupAddPlace = function () {
     openPopup(popupAddPlace);
     inputNameNewPlace.value = '';
     inputLinkNewPlace.value = '';
+    enableValidation();
 }
 buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 
@@ -197,3 +205,16 @@ initialCards.forEach(function (element) {
 
 // ___________________________________________________________________________________________________________________________
 
+// Закрыть на затемненную область
+function closePopupByClickOnOverlay(event) {
+    if (event.target.classList.contains('popup')) {
+        closePopup(document.querySelector('.popup_opened'));
+    }
+}
+
+// Закрыть на Esc
+function closePopupByClickOnEsc(event) {
+    if (event.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'));
+    }
+}

@@ -25,6 +25,19 @@
     opacity: 0.8;
 }
 
+/*ПРОВЕРИТЬ*/
+.popup__button-save:disabled {
+    color: #B8B8B8;
+    background: #EDEDED;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
 @media screen and (min-width: 880px) {
     .popup__button-save {
         font-size: 18px;

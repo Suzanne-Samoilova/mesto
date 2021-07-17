@@ -43,10 +43,20 @@
                 <div class="popup__content">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <form class="popup__form" name="SubmitEditProfile" novalidate>
-                        <input class="popup__text popup__text_input_name" type="text" name="EditName" placeholder="Имя" minlength="2" maxlength="40" required>
-                        <span class="popup__form-error" id="popup__text_input_name-error">Вы пропустили это поле.</span>
-                        <input class="popup__text popup__text_input_info" type="text" name="EditInfo" placeholder="О себе" minlength="2" maxlength="200" required>
-                        <span class="popup__form-error" id="popup__text_input_info-error">Введите адрес сайта.</span>
+                        <input class="popup__text popup__text_input_name" id="profile-name"
+                               type="text"
+                               name="EditName"
+                               placeholder="Имя"
+                               minlength="2" maxlength="40"
+                               required>
+                        <span class="popup__form-error profile-name-error" id="profile-name-error">Вы пропустили это поле.</span>
+                        <input class="popup__text popup__text_input_info" id="profile-info"
+                               type="text"
+                               name="EditInfo"
+                               placeholder="О себе"
+                               minlength="2" maxlength="200"
+                               required>
+                        <span class="popup__form-error profile-info-error" id="profile-info-error">Вы пропустили это поле.</span>
                         <button class="popup__button-save" type="submit">Сохранить</button>
                     </form>
                 </div>
@@ -60,8 +70,19 @@
                 <div class="popup__content">
                     <h2 class="popup__title">Новое место</h2>
                     <form class="popup__form popup__form_add" name="SubmitAddPlace" novalidate>
-                        <input class="popup__text popup__text_input_name-place" type="text" name="AddNamePlace" placeholder="Название" minlength="2" maxlength="30">
-                        <input class="popup__text popup__text_input_link" type="url" name="AddLinkPlace" placeholder="Ссылка на картинку" minlength="1">
+                        <input class="popup__text popup__text_input_name-place" id="new-place"
+                               type="text"
+                               name="AddNamePlace"
+                               placeholder="Название"
+                               minlength="2" maxlength="30"
+                               required>
+                        <span class="popup__form-error new-place-error" id="new-place-error">Вы пропустили это поле.</span>
+                        <input class="popup__text popup__text_input_link" id="new-link"
+                               type="url"
+                               name="AddLinkPlace"
+                               placeholder="Ссылка на картинку"
+                               required>
+                        <span class="popup__form-error new-link-error" id="new-link-error">Введите адрес сайта.</span>
                         <button class="popup__button-save" type="submit">Создать</button>
                     </form>
                 </div>
