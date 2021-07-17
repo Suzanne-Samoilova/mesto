@@ -3,7 +3,6 @@ const formInput = formElement.querySelector('.popup__text');
 
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    // inputElement.classList.add('popup__form-error');
     inputElement.classList.add('popup__text_invalid');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__form-error_active');
@@ -11,7 +10,6 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    // inputElement.classList.remove('popup__form-error');
     inputElement.classList.remove('popup__text_invalid');
     errorElement.classList.remove('popup__form-error_active');
     errorElement.textContent = '';
@@ -67,5 +65,3 @@ const enableValidation = () => {
         setEventListeners(formElement);
     });
 };
-
-// enableValidation();

@@ -5,11 +5,6 @@
     font-size: 12px;
     line-height: 15px;
     max-width: 358px;
-
     opacity: 0;
     transition: 0.3s;
-
-    /*position: absolute;*/
-    /*top: calc(100% + 6px);*/
-    /*left: 0;*/
 }
