@@ -121,8 +121,6 @@ const closePopupAddPlace = function () {
 
 // ___________________________________________________________________________________________________________________________
 
-// const imgNewPlace = card.querySelector('.card__photo');
-
 // Создать карточку из Template
 const createCard = function (name, photo) {
     // Нашли шаблон и обратились к его содержимому
@@ -211,14 +209,14 @@ function closePopupByClickOnEsc(event) {
 // Открыть попап по кнопке редактирования/ закрыть по кнопке крестика
 buttonOpenPopupElement.addEventListener('click', openPopupEditProfile);
 buttonClosePopupElement.addEventListener('click', closePopupEditProfile);
-// Обработчик формы, следит за событием “submit” - кнопка "Сохранить" (ред.профиль)
+// Обработчик формы, следит за событием “submit” - кнопка "Сохранить" (Ред.профиль)
 formElementPopup.addEventListener('submit', formSubmitHandler);
 
 // Слушать кнопки добавления места (и закрытия)
 buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
 
-// Обработчик формы, следит за событием “submit” - кнопка "Создать"
+// Обработчик формы, следит за событием “submit” - кнопка "Создать" (Новое место)
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
 
 // Слушать Закрыть попап рзворота
