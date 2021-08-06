@@ -20,10 +20,10 @@
 // // Находим форму отправки (полей ввода имени и информации) в DOM
 // const formElementPopup = document.querySelector('.popup__form');
 //
-// // Весь блок с карточками
+// Весь блок с карточками
 const cards = document.querySelector('.cards');
 export { cards };
-//
+
 //
 // // Попап Добавления места
 // // Кнопка Добавить место
@@ -95,13 +95,13 @@ export { cards };
 //
 // // ___________________________________________________________________________________________________________________________
 //
-// // Лайки
-// const addLikeHandler = function (card) {
-//     // Найти кнопку лайка во всех карточках
-//     const buttonLike = card.querySelector('.card__button-like');
-//     // Добавить класс с тёмным лайком или удалить его
-//     buttonLike.addEventListener('click',() => buttonLike.classList.toggle('card__button-like_active'));
-// }
+// // // Лайки
+// // const addLikeHandler = function (card) {
+// //     // Найти кнопку лайка во всех карточках
+// //     const buttonLike = card.querySelector('.card__button-like');
+// //     // Добавить класс с тёмным лайком или удалить его
+// //     buttonLike.addEventListener('click',() => buttonLike.classList.toggle('card__button-like_active'));
+// // }
 //
 // // ___________________________________________________________________________________________________________________________
 // // Функции:
@@ -123,86 +123,86 @@ export { cards };
 //
 // // ___________________________________________________________________________________________________________________________
 //
-// // Создать карточку из Template
-// const createCard = function (name, photo) {
-//     // Нашли шаблон и обратились к его содержимому
-//     const cardTemplate = document.querySelector('#newcard').content;
-//     //клонируем содержимое тега template
-//     const card = cardTemplate.querySelector('.card').cloneNode(true);
-//     card.querySelector('.card__text').textContent = name;
-//     card.querySelector('.card__photo').alt = name;
-//     card.querySelector('.card__photo').src = photo;
-//     // Слушать Лайк
-//     addLikeHandler(card);
-//     // Слушать Удалить
-//     deleteCard(card);
-//     // Слушать Развернуть изображение
-//     openPopupExpand(card);
-//     return card;
-// }
-//
-// // Создать карточку и поставить в начало
-// function renderCard (name, photo) {
-//     const card = createCard(name, photo);
-//     // отображаем на странице
-//     cards.prepend(card);
-// }
-//
-// // Форма
-// function formSubmitPlaceHandler (evt) {
-//     evt.preventDefault();
-//     const name = inputNameNewPlace.value;
-//     const photo = inputLinkNewPlace.value;
-//     renderCard(name, photo);
-//     // Закрыть после нажатия кнопки "Создать"
-//     closePopupAddPlace();
-// }
-//
-// // ___________________________________________________________________________________________________________________________
-//
-// // Удаление карточки
-// const deleteCard = function (card) {
-//     // Найти кнопку удаления во всех карточках
-//     const buttonDelete = card.querySelector('.card__button-delete');
-//     // Удалить элемент списка, передав его класс
-//     buttonDelete.addEventListener('click',() => buttonDelete.closest('.card').remove());
-// }
-//
-// // ___________________________________________________________________________________________________________________________
-//
-// // Попап Открыть изображение
-// // Открыть попап разворота
-// const openPopupExpand = function (card) {
-//     // Название маста на карточке
-//     const name = card.querySelector('.card__text');
-//     // Найти картинку (которую нужно открыть) на карточке
-//     const photo = card.querySelector('.card__photo');
-//
-//     photo.addEventListener('click',() => {
-//         openPopup(popupExpand);
-//         // Взять название из карточки
-//         namePopupExpand.textContent = name.textContent;
-//         // Взять ссылку из карточки
-//         photoPopupExpand.src = photo.src;
-//         photoPopupExpand.alt = photo.alt;
-//     });
-// }
-//
-// // ___________________________________________________________________________________________________________________________
-//
-// // Закрыть на затемненную область
-// function closePopupByClickOnOverlay(event) {
-//     if (event.target.classList.contains('popup')) {
-//         closePopup(document.querySelector('.popup_opened'));
-//     }
-// }
-//
-// // Закрыть на Esc
-// function closePopupByClickOnEsc(event) {
-//     if (event.key === 'Escape') {
-//         closePopup(document.querySelector('.popup_opened'));
-//     }
-// }
+// // // Создать карточку из Template
+// // const createCard = function (name, photo) {
+// //     // Нашли шаблон и обратились к его содержимому
+// //     const cardTemplate = document.querySelector('#newcard').content;
+// //     //клонируем содержимое тега template
+// //     const card = cardTemplate.querySelector('.card').cloneNode(true);
+// //     card.querySelector('.card__text').textContent = name;
+// //     card.querySelector('.card__photo').alt = name;
+// //     card.querySelector('.card__photo').src = photo;
+// //     // Слушать Лайк
+// //     addLikeHandler(card);
+// //     // Слушать Удалить
+// //     deleteCard(card);
+// //     // Слушать Развернуть изображение
+// //     openPopupExpand(card);
+// //     return card;
+// // }
+// //
+// // // Создать карточку и поставить в начало
+// // function renderCard (name, photo) {
+// //     const card = createCard(name, photo);
+// //     // отображаем на странице
+// //     cards.prepend(card);
+// // }
+// //
+// // // Форма
+// // function formSubmitPlaceHandler (evt) {
+// //     evt.preventDefault();
+// //     const name = inputNameNewPlace.value;
+// //     const photo = inputLinkNewPlace.value;
+// //     renderCard(name, photo);
+// //     // Закрыть после нажатия кнопки "Создать"
+// //     closePopupAddPlace();
+// // }
+// //
+// // // ___________________________________________________________________________________________________________________________
+// //
+// // // Удаление карточки
+// // const deleteCard = function (card) {
+// //     // Найти кнопку удаления во всех карточках
+// //     const buttonDelete = card.querySelector('.card__button-delete');
+// //     // Удалить элемент списка, передав его класс
+// //     buttonDelete.addEventListener('click',() => buttonDelete.closest('.card').remove());
+// // }
+// //
+// // // ___________________________________________________________________________________________________________________________
+// //
+// // // Попап Открыть изображение
+// // // Открыть попап разворота
+// // const openPopupExpand = function (card) {
+// //     // Название маста на карточке
+// //     const name = card.querySelector('.card__text');
+// //     // Найти картинку (которую нужно открыть) на карточке
+// //     const photo = card.querySelector('.card__photo');
+// //
+// //     photo.addEventListener('click',() => {
+// //         openPopup(popupExpand);
+// //         // Взять название из карточки
+// //         namePopupExpand.textContent = name.textContent;
+// //         // Взять ссылку из карточки
+// //         photoPopupExpand.src = photo.src;
+// //         photoPopupExpand.alt = photo.alt;
+// //     });
+// // }
+// //
+// // // ___________________________________________________________________________________________________________________________
+// //
+// // // Закрыть на затемненную область
+// // function closePopupByClickOnOverlay(event) {
+// //     if (event.target.classList.contains('popup')) {
+// //         closePopup(document.querySelector('.popup_opened'));
+// //     }
+// // }
+// //
+// // // Закрыть на Esc
+// // function closePopupByClickOnEsc(event) {
+// //     if (event.key === 'Escape') {
+// //         closePopup(document.querySelector('.popup_opened'));
+// //     }
+// // }
 //
 // // ___________________________________________________________________________________________________________________________
 // // Обработчики:
