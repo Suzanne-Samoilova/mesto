@@ -2,6 +2,9 @@
 // Константы:
 // ___________________________________________________________________________________________________________________________
 
+import { Card } from './Card';
+
+
 // Весь попап редактирования имени пользователя
 const popupElement = document.querySelector('.popup');
 // Кнопка "Редактировать профиль"
@@ -48,8 +51,8 @@ const popupExpand = document.querySelector('.popup_expand');
 export { popupExpand };
 
 
-// Кнопка закрыть развернутую картинку
-const buttonClosePopupExpand = popupExpand.querySelector('.popup__button-close-expand');
+// // Кнопка закрыть развернутую картинку
+// const buttonClosePopupExpand = popupExpand.querySelector('.popup__button-close-expand');
 
 
 // Название места на попапе разворота
@@ -158,15 +161,17 @@ const closePopupAddPlace = function () {
 //     cards.prepend(card);
 // }
 
+
 // Форма
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
     const name = inputNameNewPlace.value;
     const photo = inputLinkNewPlace.value;
-    renderCard(name, photo);
+    Card(name, photo);
     // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
 }
+
 // ___________________________________________________________________________________________________________________________
 
 // // Удаление карточки

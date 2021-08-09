@@ -92,6 +92,8 @@ class Card {
 
 }
 
+export { Card };
+
 initialCards.forEach((item) => {
     // Создадим экземпляр карточки
     const card = new Card(item, '.card-template_type_default');
