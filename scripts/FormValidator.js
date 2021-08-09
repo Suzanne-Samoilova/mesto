@@ -1,5 +1,4 @@
-// export const str = 'Я переменная из модуля script-01.js';
-// import { str, myFunc } from './script-01.js';
+export { config, FormValidator, formElement, formInput };
 
 const config = {
     formSelector: '.popup__form',
@@ -30,6 +29,7 @@ class FormValidator {
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
 
+
     // Показать ошибку
     _showInputError = (formElement, inputElement, errorMessage) => {
         this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
@@ -46,7 +46,55 @@ class FormValidator {
         this._errorElement.textContent = '';
     };
 
+    // Проверка на валидность
+    _isValid(inputElement) {
+        if (!inputElement.validity.valid) {
+            this._showInputError(this._formElement, inputElement, inputElement.validationMessage);
+        } else {
+            this._hideInputError(this._formElement, inputElement);
+        }
+    };
 
+    // this._formElement.addEventListener('submit', function (evt) {
+    //     evt.preventDefault();
+    // });
 
+    // // Вызвать функцию isValid на каждый ввод символа
+    // formInput.addEventListener('input', _isValid());
+
+    // Если хоть один не валидный
+    _hasInvalidInput() {
+        return this._inputList.some((inputElement) => {
+            return !inputElement.validity.valid;
+        });
+    };
+
+    _toggleButtonState() {
+        if (this._hasInvalidInput()) {
+            this._buttonElement.classList.add(this._inactiveButtonClass);
+        } else {
+            this._buttonElement.classList.remove(this._inactiveButtonClass);
+        }
+    };
+
+    _setEventListeners(formElement) {
+        this._toggleButtonState(inputList, buttonElement);
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(formElement, inputElement);
+            inputElement.addEventListener('input', () => {
+                this._isValid(formElement, inputElement);
+                this._toggleButtonState(inputList, buttonElement);
+            });
+        });
+    };
+
+    _enableValidation() {
+        const formList = Array.from(document.querySelectorAll(this._formSelector));
+        formList.forEach((formElement) => {
+            formElement.addEventListener('submit', (evt) => evt.preventDefault());
+            this._setEventListeners(formElement);
+        });
+    };
 
 }
+

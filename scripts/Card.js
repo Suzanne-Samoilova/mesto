@@ -1,6 +1,8 @@
 import { cards, openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand } from './index.js';
 import { initialCards } from './initial-сards.js';
 
+export { Card };
+
 class Card {
     // _getTemplate
     // generateCard
@@ -91,8 +93,6 @@ class Card {
     }
 
 }
-
-export { Card };
 
 initialCards.forEach((item) => {
     // Создадим экземпляр карточки

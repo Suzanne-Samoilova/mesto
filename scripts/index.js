@@ -3,6 +3,13 @@
 // ___________________________________________________________________________________________________________________________
 
 import { Card } from './Card';
+import { config, FormValidator, formElement, formInput } from './FormValidator';
+
+const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');
+const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector('.popup__form');
+
+const editProfileFormValidator = new FormValidator(config, editProfileForm);
+const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
 
 
 // Весь попап редактирования имени пользователя
@@ -90,7 +97,7 @@ function openPopupEditProfile() {
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
     openPopup(popupElement);
-    enableValidation();
+    editProfileFormValidator._enableValidation();
 }
 
 // Закрыть попап редактирования
@@ -126,7 +133,7 @@ const openPopupAddPlace = function () {
     openPopup(popupAddPlace);
     // Очистить поля формы
     formAddPlace.reset();
-    enableValidation();
+    addNewPlaceFormValidator._enableValidation();
 }
 
 // Закрыть попап добавления места
