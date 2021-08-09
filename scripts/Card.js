@@ -1,12 +1,19 @@
-// export const str = 'Я переменная из модуля script-01.js';
-
-import { cards } from './index.js';
+import { cards, openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand } from './index.js';
 import { initialCards } from './initial-сards.js';
 
 class Card {
+    // _getTemplate
+    // generateCard
+    // _setEventListeners
+    // _addLikeHandler
+    // _deleteCard
+    // _openPopupExpand
+    // _closePopupExpand
+
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
+
         this._cardSelector = cardSelector;
     }
 
@@ -40,9 +47,20 @@ class Card {
         this._element.querySelector('.card__button-like').addEventListener('click',() => {
             this._addLikeHandler();
         });
+
         // Слушать удалить
         this._element.querySelector('.card__button-delete').addEventListener('click',() => {
             this._deleteCard();
+        });
+
+        // Слушать Развернуть изображение
+        this._element.querySelector('.card__photo').addEventListener('click',() => {
+            this._openPopupExpand();
+        });
+
+        // Слушать закрыть попап разворота
+        popupExpand.querySelector('.popup__button-close-expand').addEventListener('click',() => {
+            this._closePopupExpand();
         });
     }
 
@@ -56,6 +74,21 @@ class Card {
         this._element.querySelector('.card__button-delete').closest('.card').remove();
     }
 
+    // Открыть попап разворота
+    _openPopupExpand() {
+        openPopup(popupExpand);
+        // Взять название из карточки
+        namePopupExpand.textContent = this._name;
+        // console.log(namePopupExpand.textContent);
+        // Взять ссылку из карточки
+        photoPopupExpand.src = this._link;
+        photoPopupExpand.alt = this._name;
+    }
+
+    // Закрыть попап разворота
+    _closePopupExpand() {
+        closePopup(popupExpand);
+    }
 
 }
 
