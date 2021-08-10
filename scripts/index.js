@@ -1,12 +1,22 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards } from './initialCards.js';
+
+export { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand };
+
 // ___________________________________________________________________________________________________________________________
 // Константы:
 // ___________________________________________________________________________________________________________________________
 
-import { Card } from './Card';
-import { config, FormValidator, formElement, formInput } from './FormValidator';
-
-export { cards, popupExpand, namePopupExpand, photoPopupExpand, openPopup, closePopup };
-
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_inactive',
+    inputErrorClass: 'popup__form-error',
+    errorClass: 'popup__form-error_active',
+    errorBorderBottomRed: 'popup__text_invalid'
+};
 
 const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');
 const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector('.popup__form');
@@ -20,6 +30,7 @@ const popupElement = document.querySelector('.popup');
 const buttonOpenPopupElement = document.querySelector('.profile__button-edit');
 // Кнопка "Закрыть попап"
 const buttonClosePopupElement = popupElement.querySelector('.popup__button-close');
+
 // Попап редактирования профиля
 // Найти имя пользователя "Жак-Ив Кусто" и инфо пользователя "Исследователь океана"
 const profileElement = document.querySelector('.profile');
@@ -32,6 +43,7 @@ const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 const formElementPopup = document.querySelector('.popup__form');
 // Весь блок с карточками
 const cards = document.querySelector('.cards');
+
 // Попап Добавления места
 // Кнопка Добавить место
 const buttonOpenPopupAddPlace = document.querySelector('.profile__button-add');
@@ -46,6 +58,7 @@ const inputNameNewPlace = popupAddPlace.querySelector('.popup__text_input_name-p
 const inputLinkNewPlace = popupAddPlace.querySelector('.popup__text_input_link');
 // Находим форму отправки (полей названия и ссылки) в DOM
 const formNewPlace = document.querySelector('.popup__form_add');
+
 // Попап Открыть изображение
 // Сам попап с развернутой картинкой
 const popupExpand = document.querySelector('.popup_expand');
@@ -55,6 +68,7 @@ const popupExpand = document.querySelector('.popup_expand');
 const namePopupExpand = popupExpand.querySelector('.popup__name-expand');
 // Развернутая картинка в попапе
 const photoPopupExpand = popupExpand.querySelector('.popup__img-expand');
+
 // ___________________________________________________________________________________________________________________________
 
 // Открыть попап
@@ -97,16 +111,6 @@ function formSubmitHandler (evt) {
 }
 
 // ___________________________________________________________________________________________________________________________
-
-// // Лайки
-// const addLikeHandler = function (card) {
-//     // Найти кнопку лайка во всех карточках
-//     const buttonLike = card.querySelector('.card__button-like');
-//     // Добавить класс с тёмным лайком или удалить его
-//     buttonLike.addEventListener('click',() => buttonLike.classList.toggle('card__button-like_active'));
-// }
-
-// ___________________________________________________________________________________________________________________________
 // Функции:
 // ___________________________________________________________________________________________________________________________
 
@@ -124,74 +128,24 @@ const closePopupAddPlace = function () {
     closePopup(popupAddPlace)
 }
 
-// ___________________________________________________________________________________________________________________________
-
-// // Создать карточку из Template
-// const createCard = function (name, photo) {
-//     // Нашли шаблон и обратились к его содержимому
-//     const cardTemplate = document.querySelector('#newcard').content;
-//     //клонируем содержимое тега template
-//     const card = cardTemplate.querySelector('.card').cloneNode(true);
-//     card.querySelector('.card__text').textContent = name;
-//     card.querySelector('.card__photo').alt = name;
-//     card.querySelector('.card__photo').src = photo;
-//     // Слушать Лайк
-//     addLikeHandler(card);
-//     // Слушать Удалить
-//     deleteCard(card);
-//     // Слушать Развернуть изображение
-//     openPopupExpand(card);
-//     return card;
-// }
-
-// // Создать карточку и поставить в начало
-// function renderCard (name, photo) {
-//     const card = createCard(name, photo);
-//     // отображаем на странице
-//     cards.prepend(card);
-// }
-
 // Форма
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
     const name = inputNameNewPlace.value;
     const photo = inputLinkNewPlace.value;
-    Card(name, photo);
+    new Card(name, photo);
     // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
 }
 
-// ___________________________________________________________________________________________________________________________
-
-// // Удаление карточки
-// const deleteCard = function (card) {
-//     // Найти кнопку удаления во всех карточках
-//     const buttonDelete = card.querySelector('.card__button-delete');
-//     // Удалить элемент списка, передав его класс
-//     buttonDelete.addEventListener('click',() => {buttonDelete.closest('.card').remove()});
-// }
-
-// ___________________________________________________________________________________________________________________________
-
-// // Попап Открыть изображение
-// // Открыть попап разворота
-// const openPopupExpand = function (card) {
-//     // Название маста на карточке
-//     const name = card.querySelector('.card__text');
-//     // Найти картинку (которую нужно открыть) на карточке
-//     const photo = card.querySelector('.card__photo');
-//
-//     photo.addEventListener('click',() => {
-//         openPopup(popupExpand);
-//         // Взять название из карточки
-//         namePopupExpand.textContent = name.textContent;
-//         // Взять ссылку из карточки
-//         photoPopupExpand.src = photo.src;
-//         photoPopupExpand.alt = photo.alt;
-//     });
-// }
-
-// ___________________________________________________________________________________________________________________________
+// Развернуть карточки из массива
+initialCards.forEach((item) => {
+    // Создадим экземпляр карточки
+    const card = new Card(item, '.card-template_type_default');
+    // Создаём карточку и возвращаем наружу
+    const cardElement = card.generateCard();
+    cards.prepend(cardElement);
+});
 
 // Закрыть на затемненную область
 function closePopupByClickOnOverlay(event) {
@@ -223,7 +177,3 @@ buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
 
 // Обработчик формы, следит за событием “submit” - кнопка "Создать" (Новое место)
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
-
-// // Слушать Закрыть попап разворота
-// buttonClosePopupExpand.addEventListener('click', () => closePopup(popupExpand));
-

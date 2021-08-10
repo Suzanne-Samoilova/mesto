@@ -1,17 +1,7 @@
-export { config, FormValidator, formElement, formInput };
+export { FormValidator };
 
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__text',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'popup__form-error',
-    errorClass: 'popup__form-error_active',
-    errorBorderBottomRed: 'popup__text_invalid'
-};
-
-const formElement = document.querySelector(config.formSelector);
-const formInput = formElement.querySelector(config.inputSelector);
+// const formElement = document.querySelector(config.formSelector);
+// const formInput = formElement.querySelector(config.inputSelector);
 
 class FormValidator {
     constructor(config, formElement) {

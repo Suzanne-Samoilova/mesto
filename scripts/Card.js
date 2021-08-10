@@ -1,5 +1,4 @@
-import { cards, openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand } from './index.js';
-import { initialCards } from './initial-сards.js';
+import { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand } from './index.js';
 
 export { Card };
 
@@ -93,12 +92,3 @@ class Card {
     }
 
 }
-
-initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
-    const card = new Card(item, '.card-template_type_default');
-    // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
-    cards.prepend(cardElement);
-});
-
