@@ -5,12 +5,14 @@
 import { Card } from './Card';
 import { config, FormValidator, formElement, formInput } from './FormValidator';
 
+export { cards, popupExpand, namePopupExpand, photoPopupExpand, openPopup, closePopup };
+
+
 const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');
 const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector('.popup__form');
 
 const editProfileFormValidator = new FormValidator(config, editProfileForm);
 const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
-
 
 // Весь попап редактирования имени пользователя
 const popupElement = document.querySelector('.popup');
@@ -18,7 +20,6 @@ const popupElement = document.querySelector('.popup');
 const buttonOpenPopupElement = document.querySelector('.profile__button-edit');
 // Кнопка "Закрыть попап"
 const buttonClosePopupElement = popupElement.querySelector('.popup__button-close');
-
 // Попап редактирования профиля
 // Найти имя пользователя "Жак-Ив Кусто" и инфо пользователя "Исследователь океана"
 const profileElement = document.querySelector('.profile');
@@ -29,13 +30,8 @@ const inputProfileName = popupElement.querySelector('.popup__text_input_name');
 const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
 // Находим форму отправки (полей ввода имени и информации) в DOM
 const formElementPopup = document.querySelector('.popup__form');
-
-
 // Весь блок с карточками
 const cards = document.querySelector('.cards');
-export { cards };
-
-
 // Попап Добавления места
 // Кнопка Добавить место
 const buttonOpenPopupAddPlace = document.querySelector('.profile__button-add');
@@ -50,25 +46,15 @@ const inputNameNewPlace = popupAddPlace.querySelector('.popup__text_input_name-p
 const inputLinkNewPlace = popupAddPlace.querySelector('.popup__text_input_link');
 // Находим форму отправки (полей названия и ссылки) в DOM
 const formNewPlace = document.querySelector('.popup__form_add');
-
-
 // Попап Открыть изображение
 // Сам попап с развернутой картинкой
 const popupExpand = document.querySelector('.popup_expand');
-export { popupExpand };
-
-
 // // Кнопка закрыть развернутую картинку
 // const buttonClosePopupExpand = popupExpand.querySelector('.popup__button-close-expand');
-
-
 // Название места на попапе разворота
 const namePopupExpand = popupExpand.querySelector('.popup__name-expand');
 // Развернутая картинка в попапе
 const photoPopupExpand = popupExpand.querySelector('.popup__img-expand');
-export { namePopupExpand, photoPopupExpand };
-
-
 // ___________________________________________________________________________________________________________________________
 
 // Открыть попап
@@ -84,9 +70,6 @@ function closePopup(popup) {
     document.removeEventListener('click', closePopupByClickOnOverlay);
     document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
-
-export { openPopup, closePopup };
-
 
 // ___________________________________________________________________________________________________________________________
 
@@ -168,7 +151,6 @@ const closePopupAddPlace = function () {
 //     cards.prepend(card);
 // }
 
-
 // Форма
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
@@ -191,7 +173,6 @@ function formSubmitPlaceHandler (evt) {
 
 // ___________________________________________________________________________________________________________________________
 
-
 // // Попап Открыть изображение
 // // Открыть попап разворота
 // const openPopupExpand = function (card) {
@@ -209,7 +190,6 @@ function formSubmitPlaceHandler (evt) {
 //         photoPopupExpand.alt = photo.alt;
 //     });
 // }
-
 
 // ___________________________________________________________________________________________________________________________
 
