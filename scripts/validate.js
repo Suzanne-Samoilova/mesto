@@ -38,12 +38,18 @@
 //     }
 // };
 
+
+
 // formElement.addEventListener('submit', function (evt) {
 //     evt.preventDefault();
 // });
 
+
+
 // // Вызвать функцию isValid на каждый ввод символа
 // formInput.addEventListener('input', isValid);
+
+
 
 // // Если хоть один не валидный
 // const hasInvalidInput = (inputList) => {

@@ -44,6 +44,8 @@ const formElementPopup = document.querySelector('.popup__form');
 // Весь блок с карточками
 const cards = document.querySelector('.cards');
 
+// const formInput = formElementPopup.querySelector(config.inputSelector);
+
 // Попап Добавления места
 // Кнопка Добавить место
 const buttonOpenPopupAddPlace = document.querySelector('.profile__button-add');
@@ -94,7 +96,7 @@ function openPopupEditProfile() {
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
     openPopup(popupElement);
-    editProfileFormValidator._enableValidation();
+    editProfileFormValidator.enableValidation();
 }
 
 // Закрыть попап редактирования
@@ -110,6 +112,12 @@ function formSubmitHandler (evt) {
     closePopup(popupElement);
 }
 
+// Заглушка на все поля ввода
+formElementPopup.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+});
+
+
 // ___________________________________________________________________________________________________________________________
 // Функции:
 // ___________________________________________________________________________________________________________________________
@@ -120,7 +128,7 @@ const openPopupAddPlace = function () {
     openPopup(popupAddPlace);
     // Очистить поля формы
     formAddPlace.reset();
-    addNewPlaceFormValidator._enableValidation();
+    addNewPlaceFormValidator.enableValidation();
 }
 
 // Закрыть попап добавления места
@@ -132,11 +140,14 @@ const closePopupAddPlace = function () {
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
     const name = inputNameNewPlace.value;
-    const photo = inputLinkNewPlace.value;
-    new Card(name, photo);
+    const link = inputLinkNewPlace.value;
+    // new Card(name, link);
+
+
     // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
 }
+
 
 // Развернуть карточки из массива
 initialCards.forEach((item) => {
