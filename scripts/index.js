@@ -8,22 +8,6 @@ export { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand }
 // Константы:
 // ___________________________________________________________________________________________________________________________
 
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__text',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'popup__form-error',
-    errorClass: 'popup__form-error_active',
-    errorBorderBottomRed: 'popup__text_invalid'
-};
-
-const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');
-const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector('.popup__form');
-
-const editProfileFormValidator = new FormValidator(config, editProfileForm);
-const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
-
 // Весь попап редактирования имени пользователя
 const popupElement = document.querySelector('.popup');
 // Кнопка "Редактировать профиль"
@@ -68,6 +52,23 @@ const popupExpand = document.querySelector('.popup_expand');
 const namePopupExpand = popupExpand.querySelector('.popup__name-expand');
 // Развернутая картинка в попапе
 const photoPopupExpand = popupExpand.querySelector('.popup__img-expand');
+
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_inactive',
+    inputErrorClass: 'popup__form-error',
+    errorClass: 'popup__form-error_active',
+    errorBorderBottomRed: 'popup__text_invalid'
+};
+
+// Для валидации
+const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');
+const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector('.popup__form');
+
+const editProfileFormValidator = new FormValidator(config, editProfileForm);
+const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
 
 // ___________________________________________________________________________________________________________________________
 
