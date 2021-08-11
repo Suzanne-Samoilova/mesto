@@ -1,9 +1,14 @@
 export { FormValidator };
 
-// const formElement = document.querySelector(config.formSelector);
-// const formInput = formElement.querySelector(config.inputSelector);
-
 class FormValidator {
+    // _showInputError
+    // _hideInputError
+    // _isValid
+    // _hasInvalidInput
+    // _toggleButtonState
+    // _setEventListeners
+    // enableValidation
+
     constructor(config, formElement) {
         this._formSelector = config.formSelector;
         this._inputSelector = config.inputSelector;
@@ -18,7 +23,6 @@ class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
-
 
     // Показать ошибку
     _showInputError = (inputElement, errorMessage) => {
@@ -52,6 +56,7 @@ class FormValidator {
         });
     };
 
+    // Переключатель кнопки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
             this._buttonElement.classList.add(this._inactiveButtonClass);
@@ -79,4 +84,3 @@ class FormValidator {
         });
     };
 }
-

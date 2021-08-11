@@ -44,8 +44,6 @@ const formElementPopup = document.querySelector('.popup__form');
 // Весь блок с карточками
 const cards = document.querySelector('.cards');
 
-// const formInput = formElementPopup.querySelector(config.inputSelector);
-
 // Попап Добавления места
 // Кнопка Добавить место
 const buttonOpenPopupAddPlace = document.querySelector('.profile__button-add');
@@ -117,7 +115,6 @@ formElementPopup.addEventListener('submit', function (evt) {
     evt.preventDefault();
 });
 
-
 // ___________________________________________________________________________________________________________________________
 // Функции:
 // ___________________________________________________________________________________________________________________________
@@ -136,27 +133,20 @@ const closePopupAddPlace = function () {
     closePopup(popupAddPlace)
 }
 
-// Форма
+// Форма добавления места
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
-    const name = inputNameNewPlace.value;
-    const link = inputLinkNewPlace.value;
-    // new Card(name, link);
-
-
-    // Закрыть после нажатия кнопки "Создать"
-    closePopupAddPlace();
-}
-
-
-// Развернуть карточки из массива
-initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
+    const item = {
+            name: inputNameNewPlace.value,
+            link: inputLinkNewPlace.value
+        };
     const card = new Card(item, '.card-template_type_default');
     // Создаём карточку и возвращаем наружу
     const cardElement = card.generateCard();
     cards.prepend(cardElement);
-});
+    // Закрыть после нажатия кнопки "Создать"
+    closePopupAddPlace();
+}
 
 // Закрыть на затемненную область
 function closePopupByClickOnOverlay(event) {
@@ -181,10 +171,19 @@ buttonOpenPopupElement.addEventListener('click', openPopupEditProfile);
 buttonClosePopupElement.addEventListener('click', closePopupEditProfile);
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить" (Ред.профиль)
 formElementPopup.addEventListener('submit', formSubmitHandler);
-
 // Слушать кнопки добавления места (и закрытия)
 buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
-
 // Обработчик формы, следит за событием “submit” - кнопка "Создать" (Новое место)
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
+
+// ___________________________________________________________________________________________________________________________
+
+// Развернуть карточки из массива
+initialCards.forEach((item) => {
+    // Создадим экземпляр карточки
+    const card = new Card(item, '.card-template_type_default');
+    // Создаём карточку и возвращаем наружу
+    const cardElement = card.generateCard();
+    cards.prepend(cardElement);
+});

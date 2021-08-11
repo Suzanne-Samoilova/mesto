@@ -19,8 +19,8 @@ class Card {
         this._cardSelector = cardSelector;
     }
 
+    // Клон
     _getTemplate() {
-        // у меня замена cardTemplate = cardElement
         const cardElement = document
             .querySelector(this._cardSelector)
             .content
@@ -43,7 +43,7 @@ class Card {
         return this._element;
     }
 
-    // Метод слушателей событий
+    // Слушалки
     _setEventListeners() {
         // Слушать лайк
         this._element.querySelector('.card__button-like').addEventListener('click',() => {
@@ -91,5 +91,4 @@ class Card {
     _closePopupExpand() {
         closePopup(popupExpand);
     }
-
 }
