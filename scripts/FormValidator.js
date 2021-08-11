@@ -1,6 +1,4 @@
-export { FormValidator };
-
-class FormValidator {
+export default class FormValidator {
     // _showInputError
     // _hideInputError
     // _isValid
