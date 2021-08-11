@@ -3,7 +3,7 @@ export default class FormValidator {
     // _hideInputError
     // _isValid
     // _hasInvalidInput
-    // _toggleButtonState
+    // toggleButtonState
     // _setEventListeners
     // enableValidation
 
@@ -55,7 +55,7 @@ export default class FormValidator {
     };
 
     // Переключатель кнопки
-    _toggleButtonState() {
+    toggleButtonState() {
         if (this._hasInvalidInput()) {
             this._buttonElement.classList.add(this._inactiveButtonClass);
         } else {
@@ -64,12 +64,12 @@ export default class FormValidator {
     };
 
     _setEventListeners() {
-        this._toggleButtonState();
+        this.toggleButtonState();
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement);
-                this._toggleButtonState();
+                this.toggleButtonState();
             });
         });
     };

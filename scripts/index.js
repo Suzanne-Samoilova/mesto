@@ -8,23 +8,22 @@ export { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand }
 // Константы:
 // ___________________________________________________________________________________________________________________________
 
-// Весь попап редактирования имени пользователя
-const popupElement = document.querySelector('.popup');
-// Кнопка "Редактировать профиль"
-const buttonOpenPopupElement = document.querySelector('.profile__button-edit');
-// Кнопка "Закрыть попап"
-const buttonClosePopupElement = popupElement.querySelector('.popup__button-close');
-
 // Попап редактирования профиля
+// Весь попап редактирования профиля
+const popupProfile = document.querySelector('.popup');
+// Кнопка "Редактировать профиль"
+const buttonOpenPopupProfile = document.querySelector('.profile__button-edit');
+// Кнопка "Закрыть попап"
+const buttonClosePopupProfile = popupProfile.querySelector('.popup__button-close');
 // Найти имя пользователя "Жак-Ив Кусто" и инфо пользователя "Исследователь океана"
 const profileElement = document.querySelector('.profile');
 const profileNameElement = profileElement.querySelector('.profile__name');
 const profileInfoElement = profileElement.querySelector('.profile__text');
 // Найти поле ввода имени и поле ввода информации
-const inputProfileName = popupElement.querySelector('.popup__text_input_name');
-const inputProfileInfo = popupElement.querySelector('.popup__text_input_info');
+const inputProfileName = popupProfile.querySelector('.popup__text_input_name');
+const inputProfileInfo = popupProfile.querySelector('.popup__text_input_info');
 // Находим форму отправки (полей ввода имени и информации) в DOM
-const formElementPopup = document.querySelector('.popup__form');
+const formPopupProfile = document.querySelector('.popup__form');
 // Весь блок с карточками
 const cards = document.querySelector('.cards');
 
@@ -46,8 +45,6 @@ const formNewPlace = document.querySelector('.popup__form_add');
 // Попап Открыть изображение
 // Сам попап с развернутой картинкой
 const popupExpand = document.querySelector('.popup_expand');
-// // Кнопка закрыть развернутую картинку
-// const buttonClosePopupExpand = popupExpand.querySelector('.popup__button-close-expand');
 // Название места на попапе разворота
 const namePopupExpand = popupExpand.querySelector('.popup__name-expand');
 // Развернутая картинка в попапе
@@ -69,6 +66,13 @@ const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector(
 
 const editProfileFormValidator = new FormValidator(config, editProfileForm);
 const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
+
+
+// Вызывайте активацию валидации один раз при старте программы, а для задания правильного состояния кнопки
+// отправки используйте вызов метода toggleButtonState  у советующего экземпляра класса FormValidator.
+// editProfileFormValidator.toggleButtonState()
+// addNewPlaceFormValidator.toggleButtonState()
+
 
 // ___________________________________________________________________________________________________________________________
 
@@ -94,27 +98,27 @@ function openPopupEditProfile() {
     // Значение полей ввода взято со страницы
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
-    openPopup(popupElement);
-    editProfileFormValidator.enableValidation();
+    openPopup(popupProfile);
+    // editProfileFormValidator.enableValidation();
 }
 
 // Закрыть попап редактирования
 const closePopupEditProfile = function () {
-    closePopup(popupElement);
+    closePopup(popupProfile);
 }
 
 // Обработчик «отправки» формы (пока никуда отправляться не будет)
-function formSubmitHandler (evt) {
+function handlerProfileFormSubmit (evt) {
     evt.preventDefault();
     profileNameElement.textContent = inputProfileName.value;
     profileInfoElement.textContent = inputProfileInfo.value;
-    closePopup(popupElement);
+    closePopup(popupProfile);
 }
 
-// Заглушка на все поля ввода
-formElementPopup.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-});
+// // Заглушка на все поля ввода
+// formPopupProfile.addEventListener('submit', function (evt) {
+//     evt.preventDefault();
+// });
 
 // ___________________________________________________________________________________________________________________________
 // Функции:
@@ -126,7 +130,7 @@ const openPopupAddPlace = function () {
     openPopup(popupAddPlace);
     // Очистить поля формы
     formAddPlace.reset();
-    addNewPlaceFormValidator.enableValidation();
+    // addNewPlaceFormValidator.enableValidation();
 }
 
 // Закрыть попап добавления места
@@ -173,10 +177,10 @@ function closePopupByClickOnEsc(event) {
 // ___________________________________________________________________________________________________________________________
 
 // Открыть попап по кнопке редактирования/ закрыть по кнопке крестика (Редактировать профиль)
-buttonOpenPopupElement.addEventListener('click', openPopupEditProfile);
-buttonClosePopupElement.addEventListener('click', closePopupEditProfile);
+buttonOpenPopupProfile.addEventListener('click', openPopupEditProfile);
+buttonClosePopupProfile.addEventListener('click', closePopupEditProfile);
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить" (Ред.профиль)
-formElementPopup.addEventListener('submit', formSubmitHandler);
+formPopupProfile.addEventListener('submit', handlerProfileFormSubmit);
 // Слушать кнопки добавления места (и закрытия)
 buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
@@ -195,5 +199,5 @@ initialCards.forEach((item) => {
     const card = new Card(item, '.card-template_type_default');
     // Создаём карточку и возвращаем наружу
     const cardElement = card.generateCard();
-    cards.prepend(cardElement);
+    cards.append(cardElement);
 });
