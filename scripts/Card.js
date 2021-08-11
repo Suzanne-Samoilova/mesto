@@ -15,8 +15,6 @@ export default class Card {
         this._link = data.link;
 
         this._cardSelector = cardSelector;
-
-
     }
 
     // Клон
@@ -78,7 +76,7 @@ export default class Card {
 
     // Удаление карточки
     _deleteCard() {
-        this._deleteButton.closest('.card').remove();
+        this._element.remove();
     }
 
     // Открыть попап разворота
