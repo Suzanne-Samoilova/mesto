@@ -2,8 +2,6 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import { initialCards } from './initialCards.js';
 
-export { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand };
-
 // ___________________________________________________________________________________________________________________________
 // Константы:
 // ___________________________________________________________________________________________________________________________
@@ -67,12 +65,13 @@ const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector(
 const editProfileFormValidator = new FormValidator(config, editProfileForm);
 const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
 
+// ___________________________________________________________________________________________________________________________
 
-// Вызывайте активацию валидации один раз при старте программы, а для задания правильного состояния кнопки
-// отправки используйте вызов метода toggleButtonState  у советующего экземпляра класса FormValidator.
-// editProfileFormValidator.toggleButtonState()
-// addNewPlaceFormValidator.toggleButtonState()
+editProfileFormValidator.enableValidation();
+addNewPlaceFormValidator.enableValidation();
 
+editProfileFormValidator.toggleButtonState();
+addNewPlaceFormValidator.toggleButtonState();
 
 // ___________________________________________________________________________________________________________________________
 
@@ -99,7 +98,6 @@ function openPopupEditProfile() {
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
     openPopup(popupProfile);
-    // editProfileFormValidator.enableValidation();
 }
 
 // Закрыть попап редактирования
@@ -115,11 +113,6 @@ function handlerProfileFormSubmit (evt) {
     closePopup(popupProfile);
 }
 
-// // Заглушка на все поля ввода
-// formPopupProfile.addEventListener('submit', function (evt) {
-//     evt.preventDefault();
-// });
-
 // ___________________________________________________________________________________________________________________________
 // Функции:
 // ___________________________________________________________________________________________________________________________
@@ -130,7 +123,6 @@ const openPopupAddPlace = function () {
     openPopup(popupAddPlace);
     // Очистить поля формы
     formAddPlace.reset();
-    // addNewPlaceFormValidator.enableValidation();
 }
 
 // Закрыть попап добавления места
@@ -172,6 +164,8 @@ function closePopupByClickOnEsc(event) {
     }
 }
 
+
+
 // ___________________________________________________________________________________________________________________________
 // Обработчики:
 // ___________________________________________________________________________________________________________________________
@@ -201,3 +195,7 @@ initialCards.forEach((item) => {
     const cardElement = card.generateCard();
     cards.append(cardElement);
 });
+
+// ___________________________________________________________________________________________________________________________
+
+export { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand };
