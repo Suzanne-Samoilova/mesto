@@ -134,6 +134,11 @@ const closePopupAddPlace = function () {
     closePopup(popupAddPlace)
 }
 
+// Закрыть попап разворота
+const closePopupExpand = function () {
+    closePopup(popupExpand)
+}
+
 // Форма добавления места
 function formSubmitPlaceHandler (evt) {
     evt.preventDefault();
@@ -177,6 +182,10 @@ buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
 buttonClosePopupAddPlace.addEventListener('click', closePopupAddPlace);
 // Обработчик формы, следит за событием “submit” - кнопка "Создать" (Новое место)
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
+// Слушать закрыть попап разворота
+popupExpand.querySelector('.popup__button-close-expand').addEventListener('click',() => {
+    closePopupExpand();
+});
 
 // ___________________________________________________________________________________________________________________________
 

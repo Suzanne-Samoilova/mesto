@@ -60,10 +60,10 @@ class Card {
             this._openPopupExpand();
         });
 
-        // Слушать закрыть попап разворота
-        popupExpand.querySelector('.popup__button-close-expand').addEventListener('click',() => {
-            this._closePopupExpand();
-        });
+        // // Слушать закрыть попап разворота
+        // popupExpand.querySelector('.popup__button-close-expand').addEventListener('click',() => {
+        //     this._closePopupExpand();
+        // });
     }
 
     // Переключатель лайка
@@ -87,8 +87,8 @@ class Card {
         photoPopupExpand.alt = this._name;
     }
 
-    // Закрыть попап разворота
-    _closePopupExpand() {
-        closePopup(popupExpand);
-    }
+    // // Закрыть попап разворота
+    // _closePopupExpand() {
+    //     closePopup(popupExpand);
+    // }
 }
