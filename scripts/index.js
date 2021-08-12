@@ -62,18 +62,15 @@ const config = {
 const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');
 const addNewPlaceForm = document.querySelector('.popup_add-card').querySelector('.popup__form');
 
+// ___________________________________________________________________________________________________________________________
+
+// Экземпляры класса FormValidator
 const editProfileFormValidator = new FormValidator(config, editProfileForm);
 const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
 
-// ___________________________________________________________________________________________________________________________
-
+// Вызов валидации
 editProfileFormValidator.enableValidation();
 addNewPlaceFormValidator.enableValidation();
-
-editProfileFormValidator.toggleButtonState();
-addNewPlaceFormValidator.toggleButtonState();
-
-// ___________________________________________________________________________________________________________________________
 
 // Открыть попап
 function openPopup(popup) {
@@ -97,6 +94,7 @@ function openPopupEditProfile() {
     // Значение полей ввода взято со страницы
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
+    editProfileFormValidator.toggleButtonState();
     openPopup(popupProfile);
 }
 
@@ -120,9 +118,10 @@ function handlerProfileFormSubmit (evt) {
 // Попап Добавить карточки
 // Открыть попап добавления места
 const openPopupAddPlace = function () {
-    openPopup(popupAddPlace);
     // Очистить поля формы
     formAddPlace.reset();
+    addNewPlaceFormValidator.toggleButtonState();
+    openPopup(popupAddPlace);
 }
 
 // Закрыть попап добавления места
@@ -163,8 +162,6 @@ function closePopupByClickOnEsc(event) {
         closePopup(document.querySelector('.popup_opened'));
     }
 }
-
-
 
 // ___________________________________________________________________________________________________________________________
 // Обработчики:
