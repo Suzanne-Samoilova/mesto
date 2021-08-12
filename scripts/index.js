@@ -94,6 +94,7 @@ function openPopupEditProfile() {
     // Значение полей ввода взято со страницы
     inputProfileName.value = profileNameElement.textContent;
     inputProfileInfo.value = profileInfoElement.textContent;
+    editProfileFormValidator.clearErrors();
     editProfileFormValidator.toggleButtonState();
     openPopup(popupProfile);
 }
@@ -104,8 +105,7 @@ const closePopupEditProfile = function () {
 }
 
 // Обработчик «отправки» формы (пока никуда отправляться не будет)
-function handlerProfileFormSubmit (evt) {
-    evt.preventDefault();
+function handlerProfileFormSubmit () {
     profileNameElement.textContent = inputProfileName.value;
     profileInfoElement.textContent = inputProfileInfo.value;
     closePopup(popupProfile);
@@ -120,13 +120,14 @@ function handlerProfileFormSubmit (evt) {
 const openPopupAddPlace = function () {
     // Очистить поля формы
     formAddPlace.reset();
+    addNewPlaceFormValidator.clearErrors();
     addNewPlaceFormValidator.toggleButtonState();
     openPopup(popupAddPlace);
 }
 
 // Закрыть попап добавления места
 const closePopupAddPlace = function () {
-    closePopup(popupAddPlace)
+    closePopup(popupAddPlace);
 }
 
 // Закрыть попап разворота
@@ -135,8 +136,7 @@ const closePopupExpand = function () {
 }
 
 // Форма добавления места
-function formSubmitPlaceHandler (evt) {
-    evt.preventDefault();
+function formSubmitPlaceHandler () {
     const item = {
             name: inputNameNewPlace.value,
             link: inputLinkNewPlace.value
@@ -183,6 +183,12 @@ popupExpand.querySelector('.popup__button-close-expand').addEventListener('click
 });
 
 // ___________________________________________________________________________________________________________________________
+
+// function createCard() {
+//     // Создадим экземпляр карточки
+//     const card = new Card(item, '.card-template_type_default');
+//     return card.generateCard();
+// }
 
 // Развернуть карточки из массива
 initialCards.forEach((item) => {
