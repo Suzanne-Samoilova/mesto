@@ -72,6 +72,8 @@ const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
 editProfileFormValidator.enableValidation();
 addNewPlaceFormValidator.enableValidation();
 
+// ___________________________________________________________________________________________________________________________
+
 // Открыть попап
 function openPopup(popup) {
     popup.classList.add('popup_opened');
