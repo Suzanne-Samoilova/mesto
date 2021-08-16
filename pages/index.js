@@ -1,9 +1,7 @@
 import {
-    config, cards,
-    popupProfile, popupAddPlace, popupExpand,
-    formAddPlace,formPopupProfile, formNewPlace,
-    editProfileForm, addNewPlaceForm, inputProfileName, inputProfileInfo,
-    profileNameElement, profileInfoElement, inputNameNewPlace, inputLinkNewPlace,
+    config, cards, popupExpand,
+    formPopupProfile, formNewPlace,
+    editProfileForm, addNewPlaceForm,
     buttonOpenPopupProfile, buttonClosePopupProfile,
     buttonOpenPopupAddPlace, buttonClosePopupAddPlace
 } from '../utils/constants.js';
