@@ -1,4 +1,5 @@
-import { openPopup, closePopup, popupExpand, namePopupExpand, photoPopupExpand } from './index.js';
+import { openPopup } from '../utils/utils.js';
+import { popupExpand, namePopupExpand, photoPopupExpand } from '../utils/constants.js';
 
 export default class Card {
     // _getTemplate
