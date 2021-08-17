@@ -45,22 +45,22 @@ popupExpand.querySelector('.popup__button-close-expand').addEventListener('click
 
 // ___________________________________________________________________________________________________________________________
 
-// function createCard(item) {
-//     // Создадим экземпляр карточки
-//     const card = new Card(item, '.card-template_type_default');
-//     return card.generateCard();
-// }
+// Создать экземпляр класса и сгенерировать карточку
+/**
+ * return html-element
+ * @param {object} card - test comment
+ * @return {html-element} - test comment */
+function createCard(card) {
+    // Создадим экземпляр карточки
+    const newCard = new Card(card, '.card-template_type_default');
+    return newCard.generateCard();
+}
 
 // Развернуть карточки из массива
-initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
-    const card = new Card(item, '.card-template_type_default');
-    // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
-
-    cards.append(cardElement);
+initialCards.forEach((card) => {
+    cards.append(createCard(card));
 });
 
 // ___________________________________________________________________________________________________________________________
 
-export { editProfileFormValidator, addNewPlaceFormValidator };
+export { editProfileFormValidator, addNewPlaceFormValidator, createCard };

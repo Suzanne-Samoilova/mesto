@@ -7,8 +7,7 @@ import {
     profileInfoElement,
     profileNameElement
 } from "./constants.js";
-import Card from "../components/Card.js";
-import { editProfileFormValidator, addNewPlaceFormValidator } from "../pages/index.js";
+import { editProfileFormValidator, addNewPlaceFormValidator, createCard } from "../pages/index.js";
 
 // ___________________________________________________________________________________________________________________________
 // Функции:
@@ -27,6 +26,8 @@ export function closePopup(popup) {
     document.removeEventListener('click', closePopupByClickOnOverlay);
     document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
+
+// ___________________________________________________________________________________________________________________________
 
 // Попап "Редактировать профиль"
 // Открыть попап редактирования
@@ -51,6 +52,8 @@ export function handlerProfileFormSubmit () {
     closePopup(popupProfile);
 }
 
+// ___________________________________________________________________________________________________________________________
+
 // Попап Добавить карточки
 // Открыть попап добавления места
 export const openPopupAddPlace = function () {
@@ -66,23 +69,22 @@ export const closePopupAddPlace = function () {
     closePopup(popupAddPlace);
 }
 
-// Закрыть попап разворота
-export const closePopupExpand = function () {
-    closePopup(popupExpand)
-}
-
 // Форма добавления места
 export function formSubmitPlaceHandler () {
-    const item = {
+    const cardData = {
         name: inputNameNewPlace.value,
         link: inputLinkNewPlace.value
     };
-    const card = new Card(item, '.card-template_type_default');
-    // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
-    cards.prepend(cardElement);
+    cards.prepend(createCard(cardData));
     // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
+}
+
+// ___________________________________________________________________________________________________________________________
+
+// Закрыть попап разворота
+export const closePopupExpand = function () {
+    closePopup(popupExpand)
 }
 
 // Закрыть на затемненную область
