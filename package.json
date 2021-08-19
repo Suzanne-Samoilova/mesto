@@ -1,0 +1,19 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "description": "![](https://thejobharbour.com/wp-content/uploads/2018/08/TravelTourism.gif)",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suzanne-Samoilova/mesto.git"
+  },
+  "author": "Suzanne_Samoilova_yandex_student\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[-\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[ \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Suzanne-Samoilova/mesto/issues"
+  },
+  "homepage": "https://github.com/Suzanne-Samoilova/mesto#readme"
+}
