@@ -1,13 +1,12 @@
 import {
-    cards,
     formAddPlace, inputLinkNewPlace, inputNameNewPlace,
     inputProfileInfo,
     inputProfileName, popupAddPlace, popupExpand,
     popupProfile,
     profileInfoElement,
     profileNameElement
-} from "./constants.js";
-import { editProfileFormValidator, addNewPlaceFormValidator, createCard } from "../pages/index.js";
+} from './constants.js';
+import {editProfileFormValidator, addNewPlaceFormValidator, defaultCardList } from '../pages/index.js';
 
 // ___________________________________________________________________________________________________________________________
 // Функции:
@@ -75,7 +74,7 @@ export function formSubmitPlaceHandler () {
         name: inputNameNewPlace.value,
         link: inputLinkNewPlace.value
     };
-    cards.prepend(createCard(cardData));
+    defaultCardList.addItem(defaultCardList.renderer(cardData));
     // Закрыть после нажатия кнопки "Создать"
     closePopupAddPlace();
 }

@@ -18,8 +18,6 @@ export const inputProfileName = popupProfile.querySelector('.popup__text_input_n
 export const inputProfileInfo = popupProfile.querySelector('.popup__text_input_info');
 // Находим форму отправки (полей ввода имени и информации) в DOM
 export const formPopupProfile = document.querySelector('.popup__form');
-// Весь блок с карточками
-export const cards = document.querySelector('.cards');
 
 // Попап Добавления места
 // Кнопка Добавить место

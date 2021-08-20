@@ -1,5 +1,5 @@
 import {
-    config, cards, popupExpand,
+    config, popupExpand,
     formPopupProfile, formNewPlace,
     editProfileForm, addNewPlaceForm,
     buttonOpenPopupProfile, buttonClosePopupProfile,
@@ -13,6 +13,7 @@ import {
     openPopupAddPlace, closePopupAddPlace,
     formSubmitPlaceHandler, closePopupExpand
 } from '../utils/utils.js';
+import Section from "../components/Section.js";
 
 // ___________________________________________________________________________________________________________________________
 
@@ -50,17 +51,21 @@ popupExpand.querySelector('.popup__button-close-expand').addEventListener('click
  * return html-element
  * @param {object} card - test comment
  * @return {html-element} - test comment */
-function createCard(card) {
+function cardRenderer(cardData) {
     // Создадим экземпляр карточки
-    const newCard = new Card(card, '.card-template_type_default');
+    const newCard = new Card(cardData, '.card-template_type_default');
     return newCard.generateCard();
 }
 
-// Развернуть карточки из массива
-initialCards.forEach((card) => {
-    cards.append(createCard(card));
-});
+export const defaultCardList = new Section({ items: initialCards, renderer: cardRenderer}, '.cards');
+defaultCardList.renderItems();
+
+
+// // Развернуть карточки из массива
+// initialCards.forEach((card) => {
+//     cards.append(createCard(card));
+// });
 
 // ___________________________________________________________________________________________________________________________
 
-export { editProfileFormValidator, addNewPlaceFormValidator, createCard };
+export { editProfileFormValidator, addNewPlaceFormValidator };
