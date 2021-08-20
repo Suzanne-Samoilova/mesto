@@ -1,13 +1,20 @@
 import Popup from "./Popup.js";
+import {formSubmitPlaceHandler} from "../utils/utils.js";
 
 export default class PopupWithForm extends Popup {
     // нужно ли указывать селектор попапа, который уже указан у родителя??
-    constructor(popupSelector, колбэк_сабмита_формы ) {
+    constructor(popupSelector, formSubmitPlaceHandler ) {
+        super(popupSelector);
+        this._formSubmitPlaceHandler = formSubmitPlaceHandler;
+        this._form = this._popup.querySelector('.popup__form');
+
+
     }
 
 
     // собирает данные всех полей формы
     _getInputValues() {
+        this._inputList = Array.from(this._form.querySelectorAll('.popup__text'));
 
     }
 

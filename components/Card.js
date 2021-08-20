@@ -1,5 +1,5 @@
-import { openPopup } from '../utils/utils.js';
-import { popupExpand, namePopupExpand, photoPopupExpand } from '../utils/constants.js';
+// import { openPopup } from '../utils/utils.js';
+// import { popupExpand, namePopupExpand, photoPopupExpand } from '../utils/constants.js';
 
 export default class Card {
     // _getTemplate
@@ -80,14 +80,14 @@ export default class Card {
         this._element.remove();
     }
 
-    // Открыть попап разворота
-    _openPopupExpand() {
-        openPopup(popupExpand);
-        // Взять название из карточки
-        namePopupExpand.textContent = this._name;
-        // console.log(namePopupExpand.textContent);
-        // Взять ссылку из карточки
-        photoPopupExpand.src = this._link;
-        photoPopupExpand.alt = this._name;
-    }
+    // // Открыть попап разворота
+    // _openPopupExpand() {
+    //     openPopup(popupExpand);
+    //     // Взять название из карточки
+    //     namePopupExpand.textContent = this._name;
+    //     // console.log(namePopupExpand.textContent);
+    //     // Взять ссылку из карточки
+    //     photoPopupExpand.src = this._link;
+    //     photoPopupExpand.alt = this._name;
+    // }
 }

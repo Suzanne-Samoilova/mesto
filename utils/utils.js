@@ -12,19 +12,19 @@ import {editProfileFormValidator, addNewPlaceFormValidator, defaultCardList } fr
 // Функции:
 // ___________________________________________________________________________________________________________________________
 
-// Открыть попап
-export function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('click', closePopupByClickOnOverlay);
-    document.addEventListener('keydown', closePopupByClickOnEsc);
-}
+// // Открыть попап
+// export function openPopup(popup) {
+//     popup.classList.add('popup_opened');
+//     document.addEventListener('click', closePopupByClickOnOverlay);
+//     document.addEventListener('keydown', closePopupByClickOnEsc);
+// }
 
-// Закрыть попап
-export function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('click', closePopupByClickOnOverlay);
-    document.removeEventListener('keydown', closePopupByClickOnEsc);
-}
+// // Закрыть попап
+// export function closePopup(popup) {
+//     popup.classList.remove('popup_opened');
+//     document.removeEventListener('click', closePopupByClickOnOverlay);
+//     document.removeEventListener('keydown', closePopupByClickOnEsc);
+// }
 
 // ___________________________________________________________________________________________________________________________
 
@@ -86,16 +86,16 @@ export const closePopupExpand = function () {
     closePopup(popupExpand)
 }
 
-// Закрыть на затемненную область
-export function closePopupByClickOnOverlay(event) {
-    if (event.target.classList.contains('popup')) {
-        closePopup(document.querySelector('.popup_opened'));
-    }
-}
+// // Закрыть на затемненную область
+// export function closePopupByClickOnOverlay(event) {
+//     if (event.target.classList.contains('popup')) {
+//         closePopup(document.querySelector('.popup_opened'));
+//     }
+// }
 
-// Закрыть на Esc
-export function closePopupByClickOnEsc(event) {
-    if (event.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'));
-    }
-}
+// // Закрыть на Esc
+// export function closePopupByClickOnEsc(event) {
+//     if (event.key === 'Escape') {
+//         closePopup(document.querySelector('.popup_opened'));
+//     }
+// }

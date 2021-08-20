@@ -60,12 +60,6 @@ function cardRenderer(cardData) {
 export const defaultCardList = new Section({ items: initialCards, renderer: cardRenderer}, '.cards');
 defaultCardList.renderItems();
 
-
-// // Развернуть карточки из массива
-// initialCards.forEach((card) => {
-//     cards.append(createCard(card));
-// });
-
 // ___________________________________________________________________________________________________________________________
 
 export { editProfileFormValidator, addNewPlaceFormValidator };

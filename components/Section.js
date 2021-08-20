@@ -1,4 +1,7 @@
 export default class Section {
+    // addItem
+    // renderItems
+
     constructor({ items, renderer }, containerSelector) {
         // массив данных, которые нужно добавить при инициализации класса (initialCards)
         this._itemsArray = items;
