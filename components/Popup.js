@@ -4,48 +4,53 @@ export default class Popup {
         this._popup = document.querySelector(popupSelector);
     }
 
-
     // Открыть попап
     open() {
-    this._popup.classList.add('popup_opened');
+        this._popup.classList.add('popup_opened');
+        this.setEventListeners();
     }
-
 
     // закрытие попапа
     close() {
         this._popup.classList.remove('popup_opened');
+        this._removeEventListeners();
     }
 
-
     // Закрыть на Esc
-    _handleEscClose() {
+    _handleEscClose(event) {
         if (event.key === 'Escape') {
             this.close();
         }
     }
 
-
-    // Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
-    // Модальное окно также закрывается при клике на затемнённую область вокруг формы.
-
-    // добавляет слушатель клика иконке закрытия попапа
-    // Модальное окно также закрывается при клике на затемнённую область вокруг формы
     setEventListeners() {
+        // Кнопка Закрыть
         this._popup
             .querySelector('.popup__button-close')
             .addEventListener('click', this.close.bind(this));
 
+        // Затемненная область
         this._popup.addEventListener('mousedown', (event) => {
             if (event.target.classList.contains('popup')) {
                 this.close();
             }
         });
+
+        // Esc
+        document.addEventListener('keydown', this._handleEscClose.bind(this));
+    }
+
+    _removeEventListeners() {
+        this._popup
+            .querySelector('.popup__button-close')
+            .removeEventListener('click', this.close.bind(this));
+
+        this._popup.removeEventListener('mousedown', (event) => {
+            if (event.target.classList.contains('popup')) {
+                this.close();
+            }
+        });
+
+        document.removeEventListener('keydown', this._handleEscClose.bind(this));
     }
 }
-
-// // Закрыть на затемненную область
-// export function closePopupByClickOnOverlay(event) {
-//     if (event.target.classList.contains('popup')) {
-//         closePopup(document.querySelector('.popup_opened'));
-//     }
-// }

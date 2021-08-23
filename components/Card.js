@@ -1,3 +1,5 @@
+import { popupClassExpand } from '../pages/index.js';
+
 export default class Card {
     // _getTemplate
     // generateCard
@@ -5,7 +7,6 @@ export default class Card {
     // _addLikeHandler
     // _deleteCard
     // _openPopupExpand
-    // _closePopupExpand
 
     constructor(data, cardSelector) {
         this._name = data.name;
@@ -32,7 +33,7 @@ export default class Card {
         // Текст карточки
         this._titleElement = this._element.querySelector('.card__text');
         // Картинка
-        this._imageElement =this._element.querySelector('.card__photo');
+        this._imageElement = this._element.querySelector('.card__photo');
         // Кнопка лайка
         this._likeButton = this._element.querySelector('.card__button-like');
         // Кнопка удалить
@@ -61,10 +62,10 @@ export default class Card {
             this._deleteCard();
         });
 
-        // // Слушать Развернуть изображение
-        // this._imageElement.addEventListener('click',() => {
-        //     this._openPopupExpand();
-        // });
+        // Слушать Развернуть изображение
+        this._imageElement.addEventListener('click',() => {
+            this._openPopupExpand();
+        });
     }
 
     // Переключатель лайка
@@ -77,14 +78,13 @@ export default class Card {
         this._element.remove();
     }
 
-    // // Открыть попап разворота
-    // _openPopupExpand() {
-    //     popupClassExpand.open();
-    //     // Взять название из карточки
-    //     namePopupExpand.textContent = this._name;
-    //     // console.log(namePopupExpand.textContent);
-    //     // Взять ссылку из карточки
-    //     photoPopupExpand.src = this._link;
-    //     photoPopupExpand.alt = this._name;
-    // }
+    // Открыть попап разворота
+    _openPopupExpand() {
+        popupClassExpand.open();
+        // Взять название из карточки
+        document.querySelector('.popup__name-expand').textContent = this._name;
+        // Взять ссылку из карточки
+        document.querySelector('.popup__img-expand').src = this._link;
+        document.querySelector('.popup__img-expand').alt = this._alt;
+    }
 }

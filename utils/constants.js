@@ -34,13 +34,6 @@ export const inputLinkNewPlace = popupAddPlace.querySelector('.popup__text_input
 // Находим форму отправки (полей названия и ссылки) в DOM
 export const formNewPlace = document.querySelector('.popup__form_add');
 
-// Попап Открыть изображение
-// Сам попап с развернутой картинкой
-export const popupExpand = document.querySelector('.popup_expand');
-// // Название места на попапе разворота
-// export const namePopupExpand = popupExpand.querySelector('.popup__name-expand');
-// // Развернутая картинка в попапе
-// export const photoPopupExpand = popupExpand.querySelector('.popup__img-expand');
 
 // Для валидации
 export const editProfileForm = document.querySelector('.popup').querySelector('.popup__form');

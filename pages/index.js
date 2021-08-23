@@ -1,19 +1,21 @@
 import {
-    config, popupExpand,
+    config,
     formPopupProfile, formNewPlace,
     editProfileForm, addNewPlaceForm,
     buttonOpenPopupProfile, buttonClosePopupProfile,
     buttonOpenPopupAddPlace, buttonClosePopupAddPlace
 } from '../utils/constants.js';
-import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
-import { initialCards } from '../scripts/initialCards.js';
+
 import {
     openPopupEditProfile, handlerProfileFormSubmit,
     formSubmitPlaceHandler, openPopupAddPlace
 } from '../utils/utils.js';
-import Section from "../components/Section.js";
+
+import FormValidator from '../components/FormValidator.js';
 import Popup from "../components/Popup.js";
+import Card from '../components/Card.js';
+import Section from "../components/Section.js";
+import { initialCards } from '../scripts/initialCards.js';
 // ___________________________________________________________________________________________________________________________
 
 // Экземпляры класса FormValidator
@@ -24,8 +26,6 @@ const addNewPlaceFormValidator = new FormValidator(config, addNewPlaceForm);
 editProfileFormValidator.enableValidation();
 addNewPlaceFormValidator.enableValidation();
 
-
-
 // Экземпляры класса Popup
 const popupClassEditProfile = new Popup('.popup');
 const popupClassAddCard = new Popup('.popup_add-card');
@@ -35,16 +35,26 @@ const popupClassExpand = new Popup('.popup_expand');
 // Обработчики:
 // ___________________________________________________________________________________________________________________________
 
-buttonClosePopupProfile.addEventListener('click', popupClassEditProfile.close);
+buttonClosePopupProfile.addEventListener('click', () => {
+    popupClassEditProfile.close();
+});
+
 // Обработчик формы, следит за событием “submit” - кнопка "Сохранить" (Ред.профиль)
 formPopupProfile.addEventListener('submit', handlerProfileFormSubmit);
+
 // Слушать кнопки добавления места (и закрытия)
 buttonOpenPopupAddPlace.addEventListener('click', openPopupAddPlace);
-buttonClosePopupAddPlace.addEventListener('click', popupClassAddCard.close);
+buttonClosePopupAddPlace.addEventListener('click', () => {
+    popupClassAddCard.close();
+});
+
 // Обработчик формы, следит за событием “submit” - кнопка "Создать" (Новое место)
 formNewPlace.addEventListener('submit', formSubmitPlaceHandler);
+
 // Слушать закрыть попап разворота
-popupExpand.querySelector('.popup__button-close-expand').addEventListener('click',() => {
+document.querySelector('.popup_expand')
+    .querySelector('.popup__button-close-expand')
+    .addEventListener('click',() => {
     popupClassExpand.close();
 });
 
