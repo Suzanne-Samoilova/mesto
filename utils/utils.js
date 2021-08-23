@@ -1,7 +1,6 @@
 import {
-    formAddPlace, inputLinkNewPlace, inputNameNewPlace,
     inputProfileInfo,
-    inputProfileName,
+    inputProfileName, popupAddPlace,
     profileInfoElement,
     profileNameElement
 } from './constants.js';
@@ -37,7 +36,7 @@ export function handlerProfileFormSubmit () {
 // Открыть попап добавления места
 export const openPopupAddPlace = function () {
     // Очистить поля формы
-    formAddPlace.reset();
+    document.forms.SubmitAddPlace.reset();
     addNewPlaceFormValidator.clearErrors();
     addNewPlaceFormValidator.toggleButtonState();
     popupClassAddCard.open();
@@ -46,8 +45,8 @@ export const openPopupAddPlace = function () {
 // Форма добавления места
 export function formSubmitPlaceHandler () {
     const cardData = {
-        name: inputNameNewPlace.value,
-        link: inputLinkNewPlace.value
+        name: popupAddPlace.querySelector('.popup__text_input_name-place').value,
+        link: popupAddPlace.querySelector('.popup__text_input_link').value
     };
     defaultCardList.addItem(defaultCardList.renderer(cardData));
     // Закрыть после нажатия кнопки "Создать"
