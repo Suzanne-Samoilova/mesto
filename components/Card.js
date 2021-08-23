@@ -1,6 +1,3 @@
-// import { openPopup } from '../utils/utils.js';
-// import { popupExpand, namePopupExpand, photoPopupExpand } from '../utils/constants.js';
-
 export default class Card {
     // _getTemplate
     // generateCard
@@ -64,10 +61,10 @@ export default class Card {
             this._deleteCard();
         });
 
-        // Слушать Развернуть изображение
-        this._imageElement.addEventListener('click',() => {
-            this._openPopupExpand();
-        });
+        // // Слушать Развернуть изображение
+        // this._imageElement.addEventListener('click',() => {
+        //     this._openPopupExpand();
+        // });
     }
 
     // Переключатель лайка
@@ -82,7 +79,7 @@ export default class Card {
 
     // // Открыть попап разворота
     // _openPopupExpand() {
-    //     openPopup(popupExpand);
+    //     popupClassExpand.open();
     //     // Взять название из карточки
     //     namePopupExpand.textContent = this._name;
     //     // console.log(namePopupExpand.textContent);

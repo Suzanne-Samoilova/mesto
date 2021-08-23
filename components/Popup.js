@@ -1,5 +1,3 @@
-// import {closePopupByClickOnEsc, closePopupByClickOnOverlay} from "../utils/utils";
-
 export default class Popup {
     constructor(popupSelector) {
         // popupSelector - селектор попапа
