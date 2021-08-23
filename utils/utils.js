@@ -4,9 +4,12 @@ import {
     profileInfoElement,
     profileNameElement
 } from './constants.js';
-import {editProfileFormValidator, addNewPlaceFormValidator,
+
+import {
+    editProfileFormValidator, addNewPlaceFormValidator,
     defaultCardList,
-    popupClassEditProfile, popupClassAddCard } from '../pages/index.js';
+    popupClassEditProfile, popupClassAddCard
+} from '../pages/index.js';
 
 // ___________________________________________________________________________________________________________________________
 // Функции:

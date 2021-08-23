@@ -12,7 +12,9 @@ import FormValidator from '../components/FormValidator.js';
 import Popup from "../components/Popup.js";
 import Card from '../components/Card.js';
 import Section from "../components/Section.js";
+import PopupWithImage from '../components/PopupWithImage.js';
 import { initialCards } from '../scripts/initialCards.js';
+
 // ___________________________________________________________________________________________________________________________
 
 // Экземпляры класса FormValidator
@@ -26,7 +28,7 @@ addNewPlaceFormValidator.enableValidation();
 // Экземпляры класса Popup
 const popupClassEditProfile = new Popup('.popup');
 const popupClassAddCard = new Popup('.popup_add-card');
-const popupClassExpand = new Popup('.popup_expand');
+const PopupClassWithImage = new PopupWithImage('.popup_expand');
 
 // ___________________________________________________________________________________________________________________________
 // Обработчики:
@@ -59,13 +61,6 @@ document
     .querySelector('.popup__form_add')
     .addEventListener('submit', formSubmitPlaceHandler);
 
-// Слушать закрыть попап разворота
-document.querySelector('.popup_expand')
-    .querySelector('.popup__button-close-expand')
-    .addEventListener('click',() => {
-    popupClassExpand.close();
-});
-
 // ___________________________________________________________________________________________________________________________
 
 // Создать экземпляр класса и сгенерировать карточку
@@ -75,7 +70,9 @@ document.querySelector('.popup_expand')
  * @return {html-element} - test comment */
 function cardRenderer(cardData) {
     // Создадим экземпляр карточки
-    const newCard = new Card(cardData, '.card-template_type_default');
+    const newCard = new Card(cardData, '.card-template_type_default',(data) => {
+        PopupClassWithImage.open(data);
+    });
     return newCard.generateCard();
 }
 
@@ -91,4 +88,4 @@ document
 
 // ___________________________________________________________________________________________________________________________
 
-export { editProfileFormValidator, addNewPlaceFormValidator, popupClassEditProfile, popupClassAddCard, popupClassExpand };
+export { editProfileFormValidator, addNewPlaceFormValidator, popupClassEditProfile, popupClassAddCard, PopupClassWithImage };

@@ -1,19 +1,16 @@
-import { popupClassExpand } from '../pages/index.js';
-
 export default class Card {
     // _getTemplate
     // generateCard
     // _setEventListeners
     // _addLikeHandler
     // _deleteCard
-    // _openPopupExpand
 
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
+        this._data = data;
         this._name = data.name;
-        this._alt = data.name;
         this._link = data.link;
-
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     // Клон
@@ -63,9 +60,10 @@ export default class Card {
         });
 
         // Слушать Развернуть изображение
-        this._imageElement.addEventListener('click',() => {
-            this._openPopupExpand();
+        this._imageElement.addEventListener('click', () => {
+            this._handleCardClick(this._data);
         });
+
     }
 
     // Переключатель лайка
@@ -76,15 +74,5 @@ export default class Card {
     // Удаление карточки
     _deleteCard() {
         this._element.remove();
-    }
-
-    // Открыть попап разворота
-    _openPopupExpand() {
-        popupClassExpand.open();
-        // Взять название из карточки
-        document.querySelector('.popup__name-expand').textContent = this._name;
-        // Взять ссылку из карточки
-        document.querySelector('.popup__img-expand').src = this._link;
-        document.querySelector('.popup__img-expand').alt = this._alt;
     }
 }
