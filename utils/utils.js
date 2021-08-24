@@ -46,7 +46,7 @@ export const openPopupAddPlace = function () {
 }
 
 // Форма добавления места
-export function formSubmitPlaceHandler () {
+export function handleFormSubmit () {
     const cardData = {
         name: popupAddPlace.querySelector('.popup__text_input_name-place').value,
         link: popupAddPlace.querySelector('.popup__text_input_link').value

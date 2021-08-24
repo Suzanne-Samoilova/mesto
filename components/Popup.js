@@ -30,7 +30,8 @@ export default class Popup {
             .addEventListener('click', this.close.bind(this));
 
         // Затемненная область
-        this._popup.addEventListener('mousedown', (event) => {
+        this._popup
+            .addEventListener('mousedown', (event) => {
             if (event.target.classList.contains('popup')) {
                 this.close();
             }

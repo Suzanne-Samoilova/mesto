@@ -5,7 +5,7 @@ import {
 
 import {
     openPopupEditProfile, handlerProfileFormSubmit,
-    formSubmitPlaceHandler, openPopupAddPlace
+    handleFormSubmit, openPopupAddPlace
 } from '../utils/utils.js';
 
 import FormValidator from '../components/FormValidator.js';
@@ -13,6 +13,7 @@ import Popup from "../components/Popup.js";
 import Card from '../components/Card.js';
 import Section from "../components/Section.js";
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWIthForm from '../components/PopupWithForm.js';
 import { initialCards } from '../scripts/initialCards.js';
 
 // ___________________________________________________________________________________________________________________________
@@ -59,7 +60,7 @@ querySelector('.popup__button-close_add-card')
 // Обработчик формы, следит за событием “submit” - кнопка "Создать" (Новое место)
 document
     .querySelector('.popup__form_add')
-    .addEventListener('submit', formSubmitPlaceHandler);
+    .addEventListener('submit', handleFormSubmit);
 
 // ___________________________________________________________________________________________________________________________
 

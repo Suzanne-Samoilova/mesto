@@ -3,7 +3,7 @@ export default class Section {
     // renderItems
 
     constructor({ items, renderer }, containerSelector) {
-        // массив данных, которые нужно добавить при инициализации класса (initialCards)
+        // массив данных, которые нужно добавить (initialCards)
         this._itemsArray = items;
         // функция, которая отвечает за создание и отрисовку данных на странице
         this.renderer = renderer;
