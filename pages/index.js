@@ -15,6 +15,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWIthForm from '../components/PopupWithForm.js';
 import { initialCards } from '../scripts/initialCards.js';
+import PopupWithForm from "../components/PopupWithForm.js";
 
 // ___________________________________________________________________________________________________________________________
 
@@ -27,13 +28,18 @@ editProfileFormValidator.enableValidation();
 addNewPlaceFormValidator.enableValidation();
 
 // Экземпляры класса Popup
-const popupClassEditProfile = new Popup('.popup');
+const popupClassEditProfile = new PopupWithForm('.popup', handleFormSubmit);
 const popupClassAddCard = new Popup('.popup_add-card');
 const PopupClassWithImage = new PopupWithImage('.popup_expand');
 
 // ___________________________________________________________________________________________________________________________
-// Обработчики:
-// ___________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
 
 popupProfile
     .querySelector('.popup__button-close')
