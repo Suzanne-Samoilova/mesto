@@ -6,10 +6,14 @@ import {
 } from './constants.js';
 
 import {
-    editProfileFormValidator, addNewPlaceFormValidator,
-    defaultCardList,
+    editProfileFormValidator, // addNewPlaceFormValidator,
+    // defaultCardList,
+    cardRenderer,
     popupClassEditProfile, popupClassAddCard
 } from '../pages/index.js';
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import {initialCards} from "../scripts/initialCards.js";
 
 // ___________________________________________________________________________________________________________________________
 // Функции:
@@ -35,23 +39,5 @@ export function handlerProfileFormSubmit () {
 
 // ___________________________________________________________________________________________________________________________
 
-// Попап Добавить карточки
-// Открыть попап добавления места
-export const openPopupAddPlace = function () {
-    // Очистить поля формы
-    document.forms.SubmitAddPlace.reset();
-    addNewPlaceFormValidator.clearErrors();
-    addNewPlaceFormValidator.toggleButtonState();
-    popupClassAddCard.open();
-}
 
-// Форма добавления места
-export function handleFormSubmit () {
-    const cardData = {
-        name: popupAddPlace.querySelector('.popup__text_input_name-place').value,
-        link: popupAddPlace.querySelector('.popup__text_input_link').value
-    };
-    defaultCardList.addItem(defaultCardList.renderer(cardData));
-    // Закрыть после нажатия кнопки "Создать"
-    popupClassAddCard.close();
-}
+

@@ -2,11 +2,24 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
     // ренейм formSubmitPlaceHandler = handleFormSubmit
-    constructor(popupSelector, handleFormSubmit ) {
+
+    // handleFormSubmit = колбэк сабмита формы
+    constructor({ popupSelector, handleFormSubmit }) {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
         this._form = this._popup.querySelector('.popup__form');
+
     }
+
+    //
+    _submitCallback(event) {
+        event.preventDefault();
+        // добавим вызов функции _handleFormSubmit
+        // передадим ей объект — результат работы _getInputValues
+        this._handleFormSubmit(this._getInputValues());
+        this.close();
+    }
+
 
     // собирает данные всех полей формы
     _getInputValues() {
@@ -18,17 +31,17 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
-    // должен добавлять обработчик клика иконке закрытия
-    // и добавлять обработчик сабмита формы
+
+    // добавлять обработчик клика иконке закрытия
+    // добавлять ОБРАБОТЧИК САБМИТА ФОРМЫ
     setEventListeners() {
         super.setEventListeners();
-        this._form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            this._handleFormSubmit(this._getInputValues());
-        });
+        this._submitCallback = this._submitCallback.bind(this)
+        this._form.addEventListener('submit', this._submitCallback);
     }
 
     close() {
+        this._form.removeEventListener('submit', this._submitCallback);
         super.close();
         // сброс формы
         this._form.reset();

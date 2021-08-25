@@ -23,35 +23,37 @@ export default class Popup {
         }
     }
 
+    // Закрыть при клике на затемнение
+    _handleMouseDownClose(event) {
+        if (event.target.classList.contains('popup')) {
+            this.close();
+        }
+    }
+
     setEventListeners() {
         // Кнопка Закрыть
+        this._bindedClose = this.close.bind(this)
         this._popup
             .querySelector('.popup__button-close')
-            .addEventListener('click', this.close.bind(this));
+            .addEventListener('click', this._bindedClose);
 
         // Затемненная область
+        this._bindedHandleMouseDownClose = this._handleMouseDownClose.bind(this)
         this._popup
-            .addEventListener('mousedown', (event) => {
-            if (event.target.classList.contains('popup')) {
-                this.close();
-            }
-        });
+            .addEventListener('mousedown', this._bindedHandleMouseDownClose);
 
         // Esc
-        document.addEventListener('keydown', this._handleEscClose.bind(this));
+        this._bindedHandleEscClose = this._handleEscClose.bind(this)
+        document.addEventListener('keydown', this._bindedHandleEscClose);
     }
 
     _removeEventListeners() {
         this._popup
             .querySelector('.popup__button-close')
-            .removeEventListener('click', this.close.bind(this));
+            .removeEventListener('click', this._bindedClose);
 
-        this._popup.removeEventListener('mousedown', (event) => {
-            if (event.target.classList.contains('popup')) {
-                this.close();
-            }
-        });
+        this._popup.removeEventListener('mousedown', this._bindedHandleMouseDownClose);
 
-        document.removeEventListener('keydown', this._handleEscClose.bind(this));
+        document.removeEventListener('keydown', this._bindedHandleEscClose);
     }
 }
