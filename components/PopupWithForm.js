@@ -11,7 +11,7 @@ export default class PopupWithForm extends Popup {
 
     }
 
-    //
+    // Вынесем в отдельную функцию, чтобы потом можно было удалить из слушателя
     _submitCallback(event) {
         event.preventDefault();
         // добавим вызов функции _handleFormSubmit
@@ -19,7 +19,6 @@ export default class PopupWithForm extends Popup {
         this._handleFormSubmit(this._getInputValues());
         this.close();
     }
-
 
     // собирает данные всех полей формы
     _getInputValues() {
@@ -30,7 +29,6 @@ export default class PopupWithForm extends Popup {
         })
         return this._formValues;
     }
-
 
     // добавлять обработчик клика иконке закрытия
     // добавлять ОБРАБОТЧИК САБМИТА ФОРМЫ
@@ -46,6 +44,6 @@ export default class PopupWithForm extends Popup {
         // сброс формы
         this._form.reset();
     }
-
-    // Для каждого попапа создавайте свой экземпляр класса PopupWithForm
 }
+
+// Для каждого попапа создавайте свой экземпляр класса PopupWithForm

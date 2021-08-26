@@ -1,6 +1,6 @@
 export default class Section {
-    // addItem
     // renderItems
+    // setItem
 
     constructor({ items, renderer }, containerSelector) {
         // массив данных, которые нужно добавить (например initialCards)
@@ -25,4 +25,3 @@ export default class Section {
         this._container.prepend(card);
     }
 }
-

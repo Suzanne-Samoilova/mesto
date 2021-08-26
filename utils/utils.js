@@ -1,25 +1,26 @@
 import {
     inputProfileInfo,
-    inputProfileName, popupAddPlace,
+    inputProfileName,
     profileInfoElement,
     profileNameElement
 } from './constants.js';
 
 import {
-    editProfileFormValidator, // addNewPlaceFormValidator,
-    // defaultCardList,
-    cardRenderer,
-    popupClassEditProfile, popupClassAddCard
+    editProfileFormValidator,
+    popupClassEditProfile,
+    popupClassAddCard,
+    addNewPlaceFormValidator,
+    PopupClassWithImage
 } from '../pages/index.js';
+
 import Card from "../components/Card.js";
-import Section from "../components/Section.js";
-import {initialCards} from "../scripts/initialCards.js";
 
 // ___________________________________________________________________________________________________________________________
 // Функции:
 // ___________________________________________________________________________________________________________________________
 
 // Попап "Редактировать профиль"
+
 // Открыть попап редактирования
 export function openPopupEditProfile() {
     // Значение полей ввода взято со страницы
@@ -39,5 +40,29 @@ export function handlerProfileFormSubmit () {
 
 // ___________________________________________________________________________________________________________________________
 
+// Попап Добавить карточки
 
+// Открыть попап добавления места
+export const openPopupAddPlace = function () {
+    // Очистить поля формы
+    document.forms.SubmitAddPlace.reset();
+    addNewPlaceFormValidator.clearErrors();
+    addNewPlaceFormValidator.toggleButtonState();
+    popupClassAddCard.open();
+}
 
+// ___________________________________________________________________________________________________________________________
+
+// Создать экземпляр класса Card и сгенерировать карточку
+/**
+ * return html-element
+ * @param {object} card - test comment
+ * @return {html-element} - test comment */
+
+export function cardRenderer(cardData) {
+    // Создадим экземпляр карточки
+    const newCard = new Card(cardData, '.card-template_type_default',(data) => {
+        PopupClassWithImage.open(data);
+    });
+    return newCard.generateCard();
+}

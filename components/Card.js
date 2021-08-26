@@ -63,7 +63,6 @@ export default class Card {
         this._imageElement.addEventListener('click', () => {
             this._handleCardClick(this._data);
         });
-
     }
 
     // Переключатель лайка

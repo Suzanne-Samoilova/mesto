@@ -6,6 +6,7 @@ export default class FormValidator {
     // toggleButtonState
     // setEventListeners
     // enableValidation
+    // clearErrors
 
     constructor(config, formElement) {
         this._formSelector = config.formSelector;
