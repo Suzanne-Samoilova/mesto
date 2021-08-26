@@ -12,7 +12,7 @@ export default class Section {
     }
 
     // отвечает за отрисовку всех элементов
-    // Отрисовка каждого отдельного элемента должна осуществляться функцией renderer
+    // отрисовка каждого отдельного элемента должна осуществляться функцией renderer
     renderItems() {
         this._itemsArray.forEach((card) => {
             this.setItem(this.renderer(card));

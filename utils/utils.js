@@ -1,8 +1,6 @@
 import {
     inputProfileInfo,
-    inputProfileName,
-    profileInfoElement,
-    profileNameElement
+    inputProfileName
 } from './constants.js';
 
 import {
@@ -10,37 +8,34 @@ import {
     popupClassEditProfile,
     popupClassAddCard,
     addNewPlaceFormValidator,
-    PopupClassWithImage
+    PopupClassWithImage,
+    user
 } from '../pages/index.js';
 
-import Card from "../components/Card.js";
+import Card from '../components/Card.js';
+
 
 // ___________________________________________________________________________________________________________________________
-// Функции:
-// ___________________________________________________________________________________________________________________________
-
 // Попап "Редактировать профиль"
+// ___________________________________________________________________________________________________________________________
 
 // Открыть попап редактирования
 export function openPopupEditProfile() {
-    // Значение полей ввода взято со страницы
-    inputProfileName.value = profileNameElement.textContent;
-    inputProfileInfo.value = profileInfoElement.textContent;
     editProfileFormValidator.clearErrors();
     editProfileFormValidator.toggleButtonState();
+
+    // Взять данные со страницы при открытии попапа
+    const dataUser = user.getUserInfo();
+    inputProfileName.value = dataUser.name;
+    inputProfileInfo.value = dataUser.info;
+
     popupClassEditProfile.open();
 }
 
-// Обработчик «отправки» формы (пока никуда отправляться не будет)
-export function handlerProfileFormSubmit () {
-    profileNameElement.textContent = inputProfileName.value;
-    profileInfoElement.textContent = inputProfileInfo.value;
-    popupClassEditProfile.close();
-}
 
 // ___________________________________________________________________________________________________________________________
-
-// Попап Добавить карточки
+// Попап "Добавить карточки"
+// ___________________________________________________________________________________________________________________________
 
 // Открыть попап добавления места
 export const openPopupAddPlace = function () {
@@ -51,6 +46,9 @@ export const openPopupAddPlace = function () {
     popupClassAddCard.open();
 }
 
+
+// ___________________________________________________________________________________________________________________________
+// Карточки
 // ___________________________________________________________________________________________________________________________
 
 // Создать экземпляр класса Card и сгенерировать карточку
@@ -58,7 +56,6 @@ export const openPopupAddPlace = function () {
  * return html-element
  * @param {object} card - test comment
  * @return {html-element} - test comment */
-
 export function cardRenderer(cardData) {
     // Создадим экземпляр карточки
     const newCard = new Card(cardData, '.card-template_type_default',(data) => {

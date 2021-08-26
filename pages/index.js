@@ -1,19 +1,26 @@
 import {
     openPopupEditProfile,
     openPopupAddPlace,
-    cardRenderer,
-    handlerProfileFormSubmit
+    cardRenderer
 } from '../utils/utils.js';
 
+import {
+    config,
+    profileInfoElement,
+    profileNameElement
+} from '../utils/constants.js';
+
 import FormValidator from '../components/FormValidator.js';
-import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
-import { config } from '../utils/constants.js';
 import { initialCards } from '../scripts/initialCards.js';
 
+
+// ___________________________________________________________________________________________________________________________
+// Валидация всех форм
 // ___________________________________________________________________________________________________________________________
 
 // Экземпляры класса FormValidator
@@ -24,24 +31,16 @@ const addNewPlaceFormValidator = new FormValidator(config, document.querySelecto
 editProfileFormValidator.enableValidation();
 addNewPlaceFormValidator.enableValidation();
 
-// Экземпляры класса Popup
-const popupClassEditProfile = new Popup('.popup');
+
+// ___________________________________________________________________________________________________________________________
+// Попап с развернутой картинкой
+// ___________________________________________________________________________________________________________________________
+
 const PopupClassWithImage = new PopupWithImage('.popup_expand');
 
-// ___________________________________________________________________________________________________________________________
-
-// Обработчик формы, следит за событием “submit” - кнопка "Сохранить" (Ред.профиль)
-document
-    .querySelector('.popup__form')
-    .addEventListener('submit', handlerProfileFormSubmit);
 
 // ___________________________________________________________________________________________________________________________
-
-// Для отрисовки начального массива
-export const defaultCardList = new Section({ items: initialCards, renderer: cardRenderer}, '.cards');
-// Отрисовка карточек
-defaultCardList.renderItems();
-
+// Добавление нового места
 // ___________________________________________________________________________________________________________________________
 
 // Попап Добавить новое место
@@ -58,19 +57,41 @@ const popupClassAddCard = new PopupWithForm({
     }
 });
 
-// Открыть попап по кнопке Добавить (Добавить новое место)
+// Открыть попап по кнопке добавления (Добавить новое место)
 document
     .querySelector('.profile__button-add')
     .addEventListener('click', openPopupAddPlace);
 
+
+// ___________________________________________________________________________________________________________________________
+// Редактирование профиля
 // ___________________________________________________________________________________________________________________________
 
+const user = new UserInfo({ profileNameElement, profileInfoElement });
 
+// Попап Редактировать профиль
+const popupClassEditProfile = new PopupWithForm({
+    popupSelector: '.popup',
+    handleFormSubmit: (data) => {
+        // добавить данные инпутов на страницу
+        user.setUserInfo(data);
+    }
+});
 
 // Открыть попап по кнопке редактирования (Редактировать профиль)
 document
     .querySelector('.profile__button-edit')
     .addEventListener('click', openPopupEditProfile);
+
+
+// ___________________________________________________________________________________________________________________________
+// Отрисовка начального массива
+// ___________________________________________________________________________________________________________________________
+
+export const defaultCardList = new Section({ items: initialCards, renderer: cardRenderer}, '.cards');
+// Отрисовка карточек
+defaultCardList.renderItems();
+
 
 // ___________________________________________________________________________________________________________________________
 
@@ -79,5 +100,6 @@ export {
     addNewPlaceFormValidator,
     popupClassEditProfile,
     popupClassAddCard,
-    PopupClassWithImage
+    PopupClassWithImage,
+    user
 };

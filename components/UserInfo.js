@@ -1,15 +1,17 @@
 // отвечает за управление отображением информации о пользователе на странице
 
 export default class UserInfo {
-    // Принимает в конструктор объект с селекторами двух элементов:
-    // элемента имени пользователя и элемента информации о себе
+    // getUserInfo
+    // setUserInfo
+
     constructor({ profileNameElement, profileInfoElement }) {
+        // Принимает селекторы имени и инфо пользователя
         this._profileNameElement = profileNameElement;
         this._profileInfoElement = profileInfoElement;
     }
 
     // возвращает объект с данными пользователя
-    // Этот метод пригодится для подставления данных в форму при открытии
+    // нужен для подставления данных в форму при открытии
     getUserInfo() {
         return {
             name: this._profileNameElement.textContent,
@@ -19,8 +21,7 @@ export default class UserInfo {
 
     // принимает новые данные пользователя и добавляет их на страницу
     setUserInfo(data) {
-        this._profileNameElement.textContent = data.name;
-        this._profileInfoElement.textContent = data.info;
+        this._profileNameElement.textContent = data.EditName;
+        this._profileInfoElement.textContent = data.EditInfo;
     }
 }
-

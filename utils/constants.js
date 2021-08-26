@@ -5,16 +5,15 @@
 // Попап редактирования профиля
 // Весь попап редактирования профиля
 export const popupProfile = document.querySelector('.popup');
-// Найти имя пользователя "Жак-Ив Кусто" и инфо пользователя "Исследователь океана"
-export const profileElement = document.querySelector('.profile');
-export const profileNameElement = profileElement.querySelector('.profile__name');
-export const profileInfoElement = profileElement.querySelector('.profile__text');
-// Найти поле ввода имени и поле ввода информации
+// Найти поля ввода имени и информации
 export const inputProfileName = popupProfile.querySelector('.popup__text_input_name');
 export const inputProfileInfo = popupProfile.querySelector('.popup__text_input_info');
 
-// Попап добавления места
-export const popupAddPlace = document.querySelector('.popup_add-card');
+// Весь профиль с данными пользователя
+export const profileElement = document.querySelector('.profile');
+// Найти на странице имя и инфо пользователя
+export const profileNameElement = profileElement.querySelector('.profile__name');
+export const profileInfoElement = profileElement.querySelector('.profile__text');
 
 export const config = {
     formSelector: '.popup__form',
