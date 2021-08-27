@@ -2,12 +2,11 @@ export default class Popup {
     // open
     // close
     // _handleEscClose
-    // _handleMouseDownClose
+    // _handleDarkOrButtonClose
     // setEventListeners
     // _removeEventListeners
 
     constructor(popupSelector) {
-        // popupSelector - селектор попапа
         this._popup = document.querySelector(popupSelector);
     }
 
@@ -30,25 +29,17 @@ export default class Popup {
         }
     }
 
-    // закрыть при клике на затемнение
-    _handleMouseDownClose(event) {
-        if (event.target.classList.contains('popup')) {
+    _handleDarkOrButtonClose(event) {
+        if (event.target.classList.contains('popup') || event.target.classList.contains('popup__button-close')) {
             this.close();
         }
     }
 
     // добавить слушатели
     setEventListeners() {
-        // Кнопка Закрыть
-        this._bindedClose = this.close.bind(this)
-        this._popup
-            .querySelector('.popup__button-close')
-            .addEventListener('click', this._bindedClose);
-
-        // Затемненная область
-        this._bindedHandleMouseDownClose = this._handleMouseDownClose.bind(this)
-        this._popup
-            .addEventListener('mousedown', this._bindedHandleMouseDownClose);
+        // Кнопка Закрыть и Затемненная область
+        this._bindedHandleDarkOrButtonClose = this._handleDarkOrButtonClose.bind(this);
+        this._popup.addEventListener('click', this._bindedHandleDarkOrButtonClose);
 
         // Esc
         this._bindedHandleEscClose = this._handleEscClose.bind(this)
@@ -57,12 +48,7 @@ export default class Popup {
 
     // удалить слушатели
     _removeEventListeners() {
-        this._popup
-            .querySelector('.popup__button-close')
-            .removeEventListener('click', this._bindedClose);
-
-        this._popup.removeEventListener('mousedown', this._bindedHandleMouseDownClose);
-
+        this._popup.removeEventListener('click', this._bindedHandleDarkOrButtonClose);
         document.removeEventListener('keydown', this._bindedHandleEscClose);
     }
 }

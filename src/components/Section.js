@@ -24,4 +24,15 @@ export default class Section {
         // console.log('карточка',card)
         this._container.prepend(card);
     }
+
+
+    // addItem(card, howAdded) {
+    //     if (howAdded) {
+    //         // добавленная карточка идет в начало
+    //         this._container.prepend(card);
+    //     } else {
+    //         // изначальный массив карточка идет в конец
+    //         this._container.append(card);
+    //     }
+    // }
 }
