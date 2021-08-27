@@ -10,7 +10,7 @@ import {
     addNewPlaceFormValidator,
     PopupClassWithImage,
     user
-} from '../pages/index.js';
+} from '../pages';
 
 import Card from '../components/Card.js';
 

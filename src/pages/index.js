@@ -1,3 +1,5 @@
+import './index.css';
+
 import {
     openPopupEditProfile,
     openPopupAddPlace,
@@ -17,7 +19,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
 import { initialCards } from '../scripts/initialCards.js';
-
 
 // ___________________________________________________________________________________________________________________________
 // Валидация всех форм
