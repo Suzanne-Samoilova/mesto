@@ -1,6 +1,6 @@
 export default class Section {
     // renderItems
-    // setItem
+    // addItem
 
     constructor({ items, renderer }, containerSelector) {
         // массив данных, которые нужно добавить (например initialCards)
@@ -15,24 +15,18 @@ export default class Section {
     // отрисовка каждого отдельного элемента должна осуществляться функцией renderer
     renderItems() {
         this._itemsArray.forEach((card) => {
-            this.setItem(this.renderer(card));
+            this.addItem(this.renderer(card), 'append');
         });
     }
 
     // принимает DOM-элемент и добавляет его в контейнер
-    setItem(card) {
-        // console.log('карточка',card)
-        this._container.prepend(card);
+    addItem(card, howAdded = 'prepend') {
+        if (howAdded === 'prepend') {
+            // добавленная карточка идет в начало
+            this._container.prepend(card);
+        } else {
+            // изначальный массив карточка идет в конец
+            this._container.append(card);
+        }
     }
-
-
-    // addItem(card, howAdded) {
-    //     if (howAdded) {
-    //         // добавленная карточка идет в начало
-    //         this._container.prepend(card);
-    //     } else {
-    //         // изначальный массив карточка идет в конец
-    //         this._container.append(card);
-    //     }
-    // }
 }

@@ -40,6 +40,15 @@ const PopupClassWithImage = new PopupWithImage('.popup_expand');
 
 
 // ___________________________________________________________________________________________________________________________
+// Отрисовка начального массива
+// ___________________________________________________________________________________________________________________________
+
+const defaultCardList = new Section({ items: initialCards, renderer: cardRenderer}, '.cards');
+// Отрисовка карточек
+defaultCardList.renderItems();
+
+
+// ___________________________________________________________________________________________________________________________
 // Добавление нового места
 // ___________________________________________________________________________________________________________________________
 
@@ -47,13 +56,11 @@ const PopupClassWithImage = new PopupWithImage('.popup_expand');
 const popupClassAddCard = new PopupWithForm({
     popupSelector: '.popup_add-card',
     handleFormSubmit: (item) => {
-        const cardData = [{
+        const cardData = {
             name: item.AddNamePlace,
             link: item.AddLinkPlace
-        }];
-        // для отрисовки карточки
-        const newCardSection = new Section({ items: cardData, renderer: cardRenderer}, '.cards');
-        newCardSection.renderItems();
+        };
+        defaultCardList.addItem(cardRenderer(cardData), 'prepend');
     }
 });
 
@@ -82,15 +89,6 @@ const popupClassEditProfile = new PopupWithForm({
 document
     .querySelector('.profile__button-edit')
     .addEventListener('click', openPopupEditProfile);
-
-
-// ___________________________________________________________________________________________________________________________
-// Отрисовка начального массива
-// ___________________________________________________________________________________________________________________________
-
-export const defaultCardList = new Section({ items: initialCards, renderer: cardRenderer}, '.cards');
-// Отрисовка карточек
-defaultCardList.renderItems();
 
 
 // ___________________________________________________________________________________________________________________________
