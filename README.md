@@ -1,6 +1,6 @@
 # Сервис Mesto
 ### Учебный проект от [Яндекс Практикум](https://praktikum.yandex.ru/).
-##### Ссылка на проект ["Mesto"](https://suzanne-samoilova.github.io/mesto/index.html)
+##### Ссылка на проект ["Mesto"](https://suzanne-samoilova.github.io/mesto/).
 
 ![](https://thejobharbour.com/wp-content/uploads/2018/08/TravelTourism.gif)
  
