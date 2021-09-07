@@ -97,6 +97,11 @@
             </div>
         </div>
 
+
+
+
+
+
 <!--Шаблон новой карточки-->
         <template id="newcard" class="card-template_type_default">
             <article class="card">
@@ -105,7 +110,11 @@
                 </div>
                 <div class="card__name">
                     <h2 class="card__text"></h2>
-                    <button class="card__button-like" type="button"></button>
+                    <div class="card__like-container">
+                        <button class="card__button-like" type="button"></button>
+                        <p class="card__counter-like">0</p>
+                    </div>
+
                 </div>
                 <button class="card__button-delete" type="button"></button>
             </article>

@@ -2,7 +2,8 @@
 ### Учебный проект от [Яндекс Практикум](https://praktikum.yandex.ru/).
 ##### Ссылка на проект ["Mesto"](https://suzanne-samoilova.github.io/mesto/index.html)
 
-![](https://thejobharbour.com/wp-content/uploads/2018/08/TravelTourism.gif)
+[comment]: <> (![]&#40;https://s5.cdn.teleprogramma.pro/wp-content/uploads/2017/03/426fd5223eab9b4c4efd77305bc86fad.gif&#41;)
+<img src="https://s5.cdn.teleprogramma.pro/wp-content/uploads/2017/03/426fd5223eab9b4c4efd77305bc86fad.gif" width="400">
  
 Данный проект является интерактивной страницей, куда можно добавлять фотографии различных мест (и пр.), удалять их и ставить лайки.
 
