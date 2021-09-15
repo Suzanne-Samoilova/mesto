@@ -11,12 +11,11 @@ export default class PopupWithImage extends Popup {
 
     // вставлять в попап картинку с src изображения и названием
     open(data) {
+        super.open();
         // Взять название из карточки
         this._name.textContent = data.name;
         // Взять ссылку из карточки
         this._link.src = data.link;
         this._link.alt = data.name;
-        super.open();
     }
 }
-

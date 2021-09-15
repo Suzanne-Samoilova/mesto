@@ -15,6 +15,9 @@ export const profileElement = document.querySelector('.profile');
 export const profileNameElement = profileElement.querySelector('.profile__name');
 export const profileInfoElement = profileElement.querySelector('.profile__text');
 
+// Найти текущий аватар
+export const profileAvatar = document.querySelector('.profile__image');
+
 export const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
@@ -24,31 +27,3 @@ export const config = {
     errorClass: 'popup__form-error_active',
     errorBorderBottomRed: 'popup__text_invalid'
 };
-
-// Массив изображений
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Цветы',
-        link: 'https://images.unsplash.com/photo-1619981584847-25f9e3eb35e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1868&q=80'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
