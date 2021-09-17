@@ -2,7 +2,7 @@
 ### Учебный проект от [Яндекс Практикум](https://praktikum.yandex.ru/).
 ##### Ссылка на проект ["Mesto"](https://suzanne-samoilova.github.io/mesto/).
 
-<img src="./src/images/mestoSamoylova.gif" width="400">
+<img src="./src/images/mestoSamoylova.gif">
  
 Данный проект является интерактивной страницей, куда можно добавлять фотографии различных мест (и пр.), удалять их и ставить лайки.
 
