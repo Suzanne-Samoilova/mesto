@@ -1,6 +1,8 @@
 .profile {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    max-width: 282px;
     margin: 42px auto 0;
 }
 
