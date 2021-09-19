@@ -47,7 +47,6 @@ const defaultCardList = new Section({
         renderer: (cardData) => {
             const newCard = createCard(cardData);
             const cardElement = newCard.generateCard();
-            newCard.likeCounter(cardData);
             defaultCardList.addItem(cardElement, 'append');
         }
     }, '.cards');
@@ -152,6 +151,7 @@ const createCard = (data) => {
             api.addLike(data)
                 .then((data) => {
                     card.likeCounter(data);
+                    card.addLikeClass();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -162,6 +162,7 @@ const createCard = (data) => {
             api.deleteLike(data)
                 .then((data) => {
                     card.likeCounter(data);
+                    card.removeLikeClass();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -213,8 +214,6 @@ const popupConfirm = new PopupWithConfirmation('.popup_confirm', {
         api.deleteCard(data)
             .then(() => {
                 cardTemp.deleteCard();
-            })
-            .then(() => {
                 popupConfirm.close();
             })
             .catch((err) => {

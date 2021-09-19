@@ -1,7 +1,7 @@
 export default class Card {
     // _getTemplate
-    // _removeLikeClass
-    // _addLikeClass
+    // removeLikeClass
+    // addLikeClass
     // _dislike
     // _like
     // likeCounter
@@ -23,7 +23,6 @@ export default class Card {
         this._handleDeleteCardClick = handleDeleteCardClick;
         this._addLikeCard = addLikeCard;
         this._deleteLikeCard = deleteLikeCard;
-        this._imageElement = document.querySelector('.card__photo');
     }
 
     // Клон
@@ -37,21 +36,19 @@ export default class Card {
         return cardElement;
     }
 
-    _removeLikeClass() {
+    removeLikeClass() {
         this._likeButton.classList.remove('card__button-like_active');
     }
 
-    _addLikeClass() {
+    addLikeClass() {
         this._likeButton.classList.add('card__button-like_active');
     }
 
     _dislike(data) {
-        this._removeLikeClass();
         this._deleteLikeCard(data);
     }
 
     _like(data) {
-        this._addLikeClass();
         this._addLikeCard(data);
     }
 
@@ -78,7 +75,7 @@ export default class Card {
     _checkStateLike() {
         this._data.likes.forEach((likeOwner) => {
             if (likeOwner._id === this._ownerId) {
-                this._addLikeClass();
+                this.addLikeClass();
             }
         })
     }
@@ -128,6 +125,7 @@ export default class Card {
         this._setEventListeners();
         this._checkMyCard();
         this._checkStateLike();
+        this.likeCounter(this._data);
 
         // Вернём элемент наружу
         return this._element;
